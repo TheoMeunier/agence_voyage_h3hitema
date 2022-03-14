@@ -6,8 +6,8 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_DATABASE: mysql_cour
-      MYSQL_USER: isox
+      MYSQL_DATABASE: agence_voyage
+      MYSQL_USER: agence
       MYSQL_PASSWORD: toor
       MYSQL_ROOT_PASSWORD: toor
     volumes:
