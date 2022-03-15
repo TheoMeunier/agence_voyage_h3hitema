@@ -21,4 +21,10 @@
 - voyage
   - image
   - titre
-  - description test commit
+  - description
+  
+## Fonctionnement
+
+ - fichier `variable.php` vous retrouverais des constantes 'variables' pour vous connecter à votre base de données
+
+Il ne dois pas etres commit
