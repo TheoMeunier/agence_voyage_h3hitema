@@ -21,4 +21,4 @@
 - voyage
   - image
   - titre
-  - description test commit
+  - description
