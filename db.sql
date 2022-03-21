@@ -29,6 +29,7 @@ CREATE TABLE TRAVEL
     image       VARCHAR(255) NOT NULL,
     description TEXT         NOT NULL,
     created_at  DATETIME     NOT NULL,
+    destination_id INT UNSIGNED NOT NULL,
 
     FOREIGN KEY (destination_id) REFERENCES DESTINATION (id),
     PRIMARY KEY (id)
