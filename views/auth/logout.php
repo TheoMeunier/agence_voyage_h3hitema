@@ -3,5 +3,5 @@
 session_start();
 session_destroy();
 
-header('Location: ' . $router->url('login'));
+header('Location: http://localhost:index.php');
 exit();
