@@ -30,7 +30,7 @@ CREATE TABLE TRAVEL
     description TEXT         NOT NULL,
     created_at  DATETIME     NOT NULL,
 
-    FOREIGN KEY (destination_id) REFERENCES classe (destination),
+    FOREIGN KEY (destination_id) REFERENCES DESTINATION (id),
     PRIMARY KEY (id)
 );
 
