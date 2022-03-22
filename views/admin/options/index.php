@@ -1,9 +1,7 @@
 <?php
-session_start();
 
-include '../../../variable.php';
-
-$pdo = new PDO("mysql:dbname=" . DB_NAME . ";host=" . DB_HOST, DB_USERNAME, DB_PASSWORD);
+// require_once '../is_connected.php';
+require_once '../../../db.php';
 
 $sql = "SELECT * FROM TAG ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);

@@ -1,7 +1,6 @@
 <?php
-session_start();
-
-require_once 'db.php';
+// require_once '../is_connected.php';
+require_once '../../../db.php';
 
 $sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
