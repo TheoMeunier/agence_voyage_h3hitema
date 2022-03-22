@@ -1,5 +1,5 @@
 <?php
-// require_once '../is_connected.php';
+require_once '../is_connected.php';
 require_once '../../../db.php';
 
 $sql = "SELECT * FROM DESTINATION ORDER BY id ASC";

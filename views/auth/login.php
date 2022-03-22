@@ -9,12 +9,12 @@ if(isset($_POST['submit'])){
     $nom = $_POST['nom'];
     $mdp = hash('sha256', $_POST['mdp']);
 
-    $data = $pdo->query("SELECT id FROM `user` WHERE name = '$nom' AND password = '$mdp'")->fetchAll(PDO::FETCH_ASSOC);
+    $req = $pdo->query("SELECT id FROM `user` WHERE name = '$nom' AND password = '$mdp'");
+    $data = $req->fetch(PDO::FETCH_OBJ);
 
-    if(count($data) > 0){
-        // $_SESSION['id'] = $query['id'];
-        echo $data['id'];
-        // header('location:../admin/options/index.php');
+    if($req->rowCount() > 0){
+        $_SESSION['id'] = $data->id;
+        header('location:../admin/options/index.php');
     }else{
         $messages[] = "L'identifiant ou le mot de passe est incorrecte";
     }

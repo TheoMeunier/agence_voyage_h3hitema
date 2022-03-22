@@ -1,6 +1,6 @@
 <?php
 
-// require_once '../is_connected.php';
+require_once '../is_connected.php';
 require_once '../../../db.php';
 
 if(isset($_POST['submit'])){
@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     $vnom = $pdo->query("SELECT name FROM `user` WHERE name = '$nom'")->fetchAll(PDO::FETCH_ASSOC);
     $vemail = $pdo->query("SELECT email FROM `user` WHERE email = '$email'")->fetchAll(PDO::FETCH_ASSOC);
 
-    $DateAndTime = time(); 
+    $date = date("Y-m-d h:i:sa");
 
     if(count($vnom) > 0){
         $messages[] = 'Cet utilisateur existe déjà !';
@@ -24,10 +24,9 @@ if(isset($_POST['submit'])){
             if($mdp != $cmdp){
                 $messages[] = 'Les MDP ne correspondent pas !';
             }else{
-                $insert = $pdo->query("INSERT INTO user(name,email,password,is_admin,created_at) VALUES('$nom','$email','$mdp','yes','$DateAndTime')")->fetchAll(PDO::FETCH_ASSOC);
+                $insert = $pdo->query("INSERT INTO user(name,email,password,is_admin,created_at) VALUES('$nom','$email','$mdp','yes','$date')");
 
                 if($insert){
-                    $messages[] = 'Création du compte réussie';
                     header('location:index.php');
                 }else{
                     $messages[] = "Création du compte aborté";
@@ -42,7 +41,12 @@ if(isset($_POST['submit'])){
 require_once '../../layouts/header.php';
 ?>
 
-<h1 class="mb-2">Créer un compte admin</h1>
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Gestion des comptes</h1>
+    <a href="index.php" class="btn btn-primary">Liste des comptes</a>
+</div>
+
+<h3 class="mb-2">Créer un compte</h3>
 
 <form action="" method="post">
 

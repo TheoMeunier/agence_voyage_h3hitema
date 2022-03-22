@@ -1,3 +1,3 @@
 <?php
-// require_once '../is_connected.php';
+require_once '../is_connected.php';
 ?>

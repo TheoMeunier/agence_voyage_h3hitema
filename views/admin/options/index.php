@@ -1,6 +1,6 @@
 <?php
 
-// require_once '../is_connected.php';
+require_once '../is_connected.php';
 require_once '../../../db.php';
 
 $sql = "SELECT * FROM TAG ORDER BY id ASC";
@@ -31,8 +31,8 @@ require_once '../../../views/layouts/header.php'
                 <?php foreach ($options as $option) : ?>
                     <tr class="tr_delete">
                         <td class="td_delete"> <?= $option['id']; ?></td>
-                        <td class="td_delete"> <?= $options['nom']; ?></td>
-                        <td class="td_delete"> <?= $options['Date']; ?></td>
+                        <td class="td_delete"> <?= $option['nom']; ?></td>
+                        <td class="td_delete"> <?= $option['Date']; ?></td>
                         <td class="td_delete">
                             <form action="admin/delete.php?id=<?= $option['id'] ?>" method="post"
                                   onsubmit="return confirm('Voulez vous vraiment effectuer cette action ?')"
