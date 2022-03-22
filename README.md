@@ -1,6 +1,6 @@
 # Agence de Voyage 
 
-## Point clés du proejt
+## Point clés du projet
 
 - listing destination 
 - listing voyage par destination
