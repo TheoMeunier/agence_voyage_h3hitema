@@ -10,10 +10,10 @@ if(isset($_POST['submit'])){
     $mdp = hash('sha256', $_POST['mdp']);
 
     $req = $pdo->query("SELECT id FROM `user` WHERE name = '$nom' AND password = '$mdp'");
-    $data = $req->fetch(PDO::FETCH_OBJ);
+    $data = $req->fetch(PDO::FETCH_ASSOC);
 
     if($req->rowCount() > 0){
-        $_SESSION['id'] = $data->id;
+        $_SESSION['id'] = $data['id'];
         header('location:../admin/options/index.php');
     }else{
         $messages[] = "L'identifiant ou le mot de passe est incorrecte";
