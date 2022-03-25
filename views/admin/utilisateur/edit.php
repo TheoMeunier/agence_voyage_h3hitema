@@ -60,6 +60,10 @@ if(isset($_POST['submit'])){
         }else if($old_mdp != $new_old_mdp){
             $messages[] = "L'ancien mdp ne correspond pas à celui indiqué";
         }
+    }else{
+        if($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
+            $messages[] = 'Entrez l\'ancien mdp pour pouvoir le modifier';
+        }
     }
 }
 

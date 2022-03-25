@@ -4,7 +4,7 @@ CREATE TABLE USER
     id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name       VARCHAR(35)  NOT NULL,
     email      VARCHAR(65)  NOT NULL,
-    password   VARCHAR(125) NOT NULL,
+    password   CHAR(64) NOT NULL,
     is_admin   BOOLEAN DEFAULT 0,
     created_at DATETIME     NOT NULL,
 
