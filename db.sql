@@ -61,3 +61,5 @@ CREATE TABLE TRAVEL_PIVO_TAGS
             ON DELETE CASCADE
             ON UPDATE RESTRICT
 );
+
+INSERT INTO user(name,email,password) VALUES('admin','admin@admin.com','admin');
