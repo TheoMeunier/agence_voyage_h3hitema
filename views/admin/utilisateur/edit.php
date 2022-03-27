@@ -46,23 +46,23 @@ if(isset($_POST['submit'])){
             }
         }
     }
-    if($new_old_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-        if($old_mdp == $new_old_mdp){
-            if($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-                if($new_mdp == $cnew_mdp){
+    if ($new_old_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
+        if ($old_mdp == $new_old_mdp){
+            if ($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
+                if ($new_mdp == $cnew_mdp){
                     $insert = $pdo->query("UPDATE user SET password = '$new_mdp' WHERE id = '$edit_id'");
-                    if(!$insert){
+                    if (!$insert){
                         $erreurs[] = "Une erreur est survenue dans la modification du mdp";
-                    }else{
+                    } else {
                         $succes[] = "Le mdp a bien été modifié";
                     }
-                }else{
+                } else {
                     $erreurs[] = 'Les deux nouveaux mdp ne correspondent pas';
                 }
-            }else{
+            } else {
                 $erreurs[] = 'Veuillez indiquer le nouveau mdp';
             }
-        }else if($old_mdp != $new_old_mdp){
+        } else if ($old_mdp != $new_old_mdp){
             $erreurs[] = "L'ancien mdp ne correspond pas à celui indiqué";
         }
     }else{
@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
     }
 }
 
-require_once '../../../views/layouts/admin-header.php'
+require_once '../../../views/layouts/admin/header.php'
 ?>
 
 <section class="content">
@@ -85,9 +85,9 @@ require_once '../../../views/layouts/admin-header.php'
     <div class="form">
         <form action="" method="post">
             <?php
-                if(isset($succes)){
-                    foreach($succes as $succes){
-                        echo '<div class="message succes">'.$succes.'</div>';
+                if(isset($success)){
+                    foreach($success as $success){
+                        echo '<div class="message succes">'.$success.'</div>';
                     }
                 }
                 if(isset($erreurs)){
@@ -97,28 +97,28 @@ require_once '../../../views/layouts/admin-header.php'
                 }
             ?>
             <div>
-                <label for="nom">Identifiant:</label>
-                <input type="text" class="champ" name="nom" value="<?=$edit_query['name'];?>">
+                <label id="name" for="nom">Nom</label>
+                <input type="text" class="champ" name="name" value="<?=$edit_query['name'];?>">
             </div>
             <div>
-                <label for="email">Email:</label>
+                <label id="email " for="email">Email</label>
                 <input type="email" class="champ" name="email" value="<?=$edit_query['email'];?>">
             </div>
             <div>
-                <label for="mdp">Ancien MDP:</label>
-                <input type="password" class="champ" name="ancien_mdp" placeholder="Ancien mdp">
+                <label id="last_password" for="last_password">Mot de passe actuel</label>
+                <input type="password" class="champ" name="last_password" placeholder="Ancien mdp">
             </div>
             <div>
-                <label for="new_mdp">Nouveau MDP:</label>
-                <input type="password" class="champ" name="nouveau_mdp" placeholder="Nouveau mdp">
+                <label id="new_password" for="new_password">Nouveau mot de passe</label>
+                <input type="password" class="champ" name="new_password">
             </div>
             <div>
-                <label for="cnew_mdp">Répétez MDP:</label>
-                <input type="password" class="champ" name="cnouveau_mdp" placeholder="Répétez mdp">
+                <label id="confirmation_password" for="confirmation_password">Confirmation du mot de passe</label>
+                <input type="password" class="champ" name="confirmation_password">
             </div>
-            <input type="submit" name="submit" value="Modifier" class="btn btn-success"></a>
+            <button type="submit" class="btn btn-success">Modifier</button>
         </form>
     </div>
 </section>
 
-<?php require_once '../../../views/layouts/admin-footer.php'; ?>
+<?php require_once '../../../views/layouts/admin/footer.php'; ?>

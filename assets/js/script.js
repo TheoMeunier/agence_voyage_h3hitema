@@ -11,7 +11,7 @@ window.onscroll = () =>{
    navbar.classList.remove('active');
 };
 
-var swiper = new Swiper(".home-slider", {
+let swiper = new Swiper(".home-slider", {
    loop:true,
    navigation: {
      nextEl: ".swiper-button-next",
@@ -19,7 +19,7 @@ var swiper = new Swiper(".home-slider", {
    },
 });
 
-var swiper = new Swiper(".reviews-slider", {
+let swiper = new Swiper(".reviews-slider", {
    grabCursor:true,
    loop:true,
    autoHeight:true,

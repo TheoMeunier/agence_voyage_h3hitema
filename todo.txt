@@ -1,0 +1,17 @@
+x = Pas fais
+
+
+A revoir:
+    x - Toutes les pages admin...
+    x - admin-header (login + répertoire admin dans layout)
+    x - revoir le css de l'admin
+    x - revoir le js
+    x - revoir les images
+    x - nom de variables admin utilisateur
+    x - faire des classe générique et nos des class par page
+    x - Créer un composant pour les messages flash
+
+
+A Faire:
+    - upload images
+    - Search for Home Pages

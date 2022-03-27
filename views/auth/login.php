@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
     }
 }
 
-require_once '../layouts/admin-header.php';
+require_once '../layouts/admin/header.php';
 ?>
     
     <section class="content">
@@ -42,5 +42,5 @@ require_once '../layouts/admin-header.php';
     </section>
 
 <?php
-require_once '../layouts/admin-footer.php';
+require_once '../layouts/admin/footer.php';
 ?>

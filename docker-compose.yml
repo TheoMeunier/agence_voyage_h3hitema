@@ -3,6 +3,7 @@ services:
   database:
     image: mariadb:latest
     restart: unless-stopped
+    container_name: database
     ports:
       - "3307:3306"
     environment:
@@ -13,6 +14,19 @@ services:
     volumes:
       - ./storage-db:/var/lib/mysql/
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app_network
+
+  #Phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8585:80"
+    container_name: phpmyadmin
+    depends_on:
+      - database
+    environment:
+      PMA_HOST: database
     networks:
       - app_network
 

@@ -1,13 +1,10 @@
-<!-- </main>
-</body>
-</html> -->
+</main>
 
 <!-- footer section starts  -->
 
-<section class="footer">
+<footer class="footer">
 
    <div class="box-container">
-
       <div class="box">
          <h3>Liens utiles</h3>
          <a href="/views/contact.php"> <span><i class="fas fa-angle-right"></i></span> Des questions ?</a>
@@ -28,12 +25,11 @@
          <a href="#"> <span>Instagram</span> <i class="fab fa-instagram"></i> </a>
          <a href="#"> <span>Linkedin</span> <i class="fab fa-linkedin"></i> </a>
       </div>
-
    </div>
 
    <div class="credit"> Créé par <span>JetLag</span> | Tous droits réservés ! </div>
 
-</section>
+</footer>
 
 <!-- footer section ends -->
 
@@ -42,6 +38,5 @@
 
 <!-- custom js file link  -->
 <script src="/assets/js/script.js"></script>
-
 </body>
 </html>

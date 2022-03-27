@@ -17,22 +17,18 @@
 
 </head>
 <body>
-   
 <!-- header section starts  -->
-
-<section class="header">
-
-   <a href="home.php" class="logo">JetLag.</a>
-
    <nav class="navbar">
-      <a href="/views/home.php">Home</a>
-      <a href="/views/destinations.php">Destinations</a>
-      <a href="/views/voyages.php">Voyages</a>
-      <a href="/views/contact.php">Nous Contacter</a>
+       <a href="home.php" class="logo">JetLag.</a>
+
+       <div id="menu-btn" class="fas fa-bars"></div>
+
+       <ul>
+           <li><a href="/views/home.php">Home</a></li>
+           <li><a href="/views/destinations.php">Destination</a></li>
+           <li><a href="/views/voyages.php">Voyages</a></li>
+           <li><a href="/views/contact.php">Contact</a></li>
+       </ul>
    </nav>
 
-   <div id="menu-btn" class="fas fa-bars"></div>
-
-</section>
-
-<!-- header section ends -->
+<main class="container">
