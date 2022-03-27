@@ -53,7 +53,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../../assets/css/style.css">
+   <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
 <body>
@@ -65,10 +65,10 @@
    <a href="home.php" class="logo">JetLag.</a>
 
    <nav class="navbar">
-      <a href="home.php">Home</a>
-      <a href="about.php">A Propos</a>
-      <a href="package.php">Destinations</a>
-      <a href="book.php">Réserver</a>
+      <a href="/views/home.php">Home</a>
+      <a href="/views/about.php">A Propos</a>
+      <a href="/views/package.php">Destinations</a>
+      <a href="/views/book.php">Réserver</a>
    </nav>
 
    <div id="menu-btn" class="fas fa-bars"></div>

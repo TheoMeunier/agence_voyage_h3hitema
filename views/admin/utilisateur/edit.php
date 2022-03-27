@@ -23,26 +23,26 @@ if(isset($_POST['submit'])){
     if($new_name != ""){
         $vname = $pdo->query("SELECT id FROM user WHERE name = '$new_name'");
         if($old_name != $new_name && $vname->rowCount() > 0){
-            $messages[] = 'Cet identifiant est déjà utilisé';
+            $erreurs[] = 'Cet identifiant est déjà utilisé';
         }else if($old_name != $new_name && $vname->rowCount() <= 0){
             $insert = $pdo->query("UPDATE user SET name = '$new_name' WHERE id = '$edit_id'");
             if(!$insert){
-                $messages[] = 'Une erreur est survenue dans la modification du nom';
+                $erreurs[] = 'Une erreur est survenue dans la modification du nom';
             }else{
-                $messages[] = "Le nom a bien été modifié";
+                $succes[] = "Le nom a bien été modifié";
             }
         }
     }
     if($new_email != ""){
         $vemail = $pdo->query("SELECT id FROM user WHERE email = '$new_email'");
         if($old_email != $new_email && $vemail->rowCount() > 0){
-            $messages[] = 'Cet email est déjà utilisé';
+            $erreurs[] = 'Cet email est déjà utilisé';
         }else if($old_email != $new_email && $vemail->rowCount() <= 0){
             $insert = $pdo->query("UPDATE user SET email = '$new_email' WHERE id = '$edit_id'");
             if(!$insert){
-                $messages[] = "Une erreur est survenue dans la modification de l'email";
+                $erreurs[] = "Une erreur est survenue dans la modification de l'email";
             }else{
-                $messages[] = "L'email a bien été modifié";
+                $succes[] = "L'email a bien été modifié";
             }
         }
     }
@@ -52,22 +52,22 @@ if(isset($_POST['submit'])){
                 if($new_mdp == $cnew_mdp){
                     $insert = $pdo->query("UPDATE user SET password = '$new_mdp' WHERE id = '$edit_id'");
                     if(!$insert){
-                        $messages[] = "Une erreur est survenue dans la modification du mdp";
+                        $erreurs[] = "Une erreur est survenue dans la modification du mdp";
                     }else{
-                        $messages[] = "Le mdp a bien été modifié";
+                        $succes[] = "Le mdp a bien été modifié";
                     }
                 }else{
-                    $messages[] = 'Les deux nouveaux mdp ne correspondent pas';
+                    $erreurs[] = 'Les deux nouveaux mdp ne correspondent pas';
                 }
             }else{
-                $messages[] = 'Veuillez indiquer le nouveau mdp';
+                $erreurs[] = 'Veuillez indiquer le nouveau mdp';
             }
         }else if($old_mdp != $new_old_mdp){
-            $messages[] = "L'ancien mdp ne correspond pas à celui indiqué";
+            $erreurs[] = "L'ancien mdp ne correspond pas à celui indiqué";
         }
     }else{
         if($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-            $messages[] = 'Entrez l\'ancien mdp pour pouvoir le modifier';
+            $erreurs[] = 'Entrez l\'ancien mdp pour pouvoir le modifier';
         }
     }
 }
@@ -85,9 +85,14 @@ require_once '../../../views/layouts/admin-header.php'
     <div class="form">
         <form action="" method="post">
             <?php
-                if(isset($messages)){
-                    foreach($messages as $message){
-                        echo '<div class="message">'.$message.'</div>';
+                if(isset($succes)){
+                    foreach($succes as $succes){
+                        echo '<div class="message succes">'.$succes.'</div>';
+                    }
+                }
+                if(isset($erreurs)){
+                    foreach($erreurs as $erreur){
+                        echo '<div class="message erreur">'.$erreur.'</div>';
                     }
                 }
             ?>

@@ -15,7 +15,7 @@
     --white: #fff;
     --black: #000;
     --red: red;
-
+    --green: green;
     --clr-primary: #0766d1;
     --clr-primary-dark: #0f5bb3;
 
@@ -97,13 +97,19 @@ header nav ul li a:hover{
     margin-bottom: 2rem;
 }
 
-.content .form form .message {
+.message {
     width: 100%;
-    background-color: var(--red);
     color: var(--white);
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
     margin-bottom: 22px;
+}
+
+.erreur{
+    background-color: var(--red);
+}
+.succes{
+    background-color: var(--green);
 }
 
 .content .form form label{
@@ -151,8 +157,10 @@ header nav ul li a:hover{
     width: 70%;
 }
 
-
-
+form{
+    display: flex;
+    flex-direction: column;
+}
 
 
 

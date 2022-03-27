@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
             if($mdp != $cmdp){
                 $messages[] = 'Les MDP ne correspondent pas !';
             }else{
-                $insert = $pdo->query("INSERT INTO user(name,email,password,is_admin,created_at) VALUES('$nom','$email','$mdp','yes','$date')");
+                $insert = $pdo->query("INSERT INTO user(name,email,password,created_at) VALUES('$nom','$email','$mdp','$date')");
 
                 if($insert){
                     header('location:index.php');
@@ -55,7 +55,7 @@ require_once '../../layouts/admin-header.php';
             <?php
             if(isset($messages)){
                 foreach($messages as $message){
-                    echo '<div class="message">'.$message.'</div>';
+                    echo '<div class="message erreur">'.$message.'</div>';
                 };
             };
             ?>

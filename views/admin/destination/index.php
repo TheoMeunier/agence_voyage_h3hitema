@@ -1,53 +1,75 @@
 <?php
+
 require_once '../is_connected.php';
 require_once '../../../db.php';
 
 $sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-require_once '../../layouts/admin-header.php'
+if(isset($_GET['delete'])){
+    $delete_id = $_GET['delete'];
+    $delete_query = $pdo->query("DELETE FROM DESTINATION WHERE id = '$delete_id'");
+    if($delete_query){
+        header('location:index.php');
+    }else{
+        $messages[] = 'La destination n\'a pas pu être supprimé';
+    };
+};
+
+require_once '../../../views/layouts/admin-header.php'
 ?>
 
-    <div>
-        <h1>Gestion des destination</h1>
+<section class="content">
 
-        <div>
-            <a href="admin/new.php" class="btn btn-primary">Crée une destination</a>
-        </div>
-        <!-- on liste tout les utilisateurs -->
+    <div class="heading">
+        <h1>Gestion des destinations</h1>
+        <a href="new.php" class="btn btn-primary">Ajouter une destination</a>
+    </div>
+
+    <?php
+        if(isset($messages)){
+            foreach($messages as $message){
+                echo '<div class="message erreur width">'.$message.'</div>';
+            }
+        }
+    ?>
+
+    <!-- on liste tous les utilisateurs -->
+    <div class="width">
         <table class="table">
             <thead>
-            <tr>
-                <th>id</th>
-                <th>Nom</th>
-                <th>Date</th>
-                <th>action</th>
-            </tr>
+                <tr class="table-header">
+                    <th>ID</th>
+                    <th>TITRE</th>
+                    <th>DESCRIPTION</th>
+                    <th>CRÉÉ LE</th>
+                    <th>ACTION</th>
+                </tr>
             </thead>
 
             <tbody>
             <?php if (count($options) > 0) { ?>
                 <!-- on affiche tout les utilisateus-->
                 <?php foreach ($options as $option) : ?>
-                    <tr>
-                        <td><?= $option['id']; ?></td>
-                        <td><?= $options['nom']; ?></td>
-                        <td><?= $options['Date']; ?></td>
-                        <td>
-                            <a href="" class="btn btn-primary"></a>
-                            <form action="#" method="post"
-                                  onsubmit="return confirm('Voulez vous vraiment effectuer cette action ?')"
-                                  style="display: inline">
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                            </form>
+                    <tr class="tr_delete">
+                        <td class="td_delete"> <?= $option['id']; ?></td>
+                        <td class="td_delete"> <?= $option['name']; ?></td>
+                        <td class="td_delete"> <?= $option['description']; ?></td>
+                        <td class="td_delete"> <?= $option['created_at']; ?></td>
+                        <td class="td_delete">
+                            <a href="edit.php?edit=<?= $option['id']; ?>" class="btn btn-warning">Modifier</a>
+                            <a href="index.php?delete=<?= $option['id']; ?>" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce compte ?')">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php } else { ?>
-                <p>Il n'y à pas d'option</p>
+                <tr>
+                    <td colspan="6" class="text-center">Il n'y a pas de destination</td>
+                </tr>
             <?php } ?>
             </tbody>
         </table>
     </div>
+</section>
 
-<?php require_once '../../layouts/admin-footer.php'; ?>
+<?php require_once '../../../views/layouts/admin-footer.php'; ?>

@@ -7,44 +7,47 @@ $sql = "SELECT * FROM user ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_GET['delete'])){
-    $delete_id = $_GET['delete'];
-    $delete_query = $pdo->query("DELETE FROM user WHERE id = '$delete_id'");
-    if($delete_query){
-        header('location:index.php');
-        $messages[] = 'Le produit a bien été supprimé';
+    if($_GET['delete'] != $_SESSION['id']){
+        $delete_id = $_GET['delete'];
+        $delete_query = $pdo->query("DELETE FROM user WHERE id = '$delete_id'");
+        if($delete_query){
+            header('location:index.php');
+        }else{
+            $messages[] = 'Le compte n\'a pas pu être supprimé';
+        };
     }else{
-        $messages[] = 'Le produit n\'a pas pu être supprimé';
-    };
+        $messages[] = 'Vous ne pouvez pas supprimer le compte sur lequel vous êtes actuellement';
+    }
 };
 
 require_once '../../../views/layouts/admin-header.php'
 ?>
 
 <section class="content">
-    <?php
-
-        if(isset($messages)){
-            foreach($messages as $message){
-                echo '<div>'.$message.'</div>';
-            }
-        }
-
-    ?>
 
     <div class="heading">
         <h1>Gestion des comptes</h1>
         <a href="new.php" class="btn btn-primary">Créer un compte</a>
     </div>
+
+    <?php
+        if(isset($messages)){
+            foreach($messages as $message){
+                echo '<div class="message erreur width">'.$message.'</div>';
+            }
+        }
+    ?>
+
     <!-- on liste tous les utilisateurs -->
     <div class="width">
         <table class="table">
             <thead>
-            <tr>
-                <th>id</th>
-                <th>Nom</th>
-                <th>Date</th>
-                <th>action</th>
-            </tr>
+                <tr class="table-header">
+                    <th>ID</th>
+                    <th>IDENTIFIANT</th>
+                    <th>CRÉÉ LE</th>
+                    <th>ACTION</th>
+                </tr>
             </thead>
 
             <tbody>
@@ -63,7 +66,7 @@ require_once '../../../views/layouts/admin-header.php'
                 <?php endforeach; ?>
             <?php } else { ?>
                 <tr>
-                    <td colspan="6" class="text-center">Il n'y à pas d'option</td>
+                    <td colspan="6" class="text-center">Il n'y a pas de compte</td>
                 </tr>
             <?php } ?>
             </tbody>
