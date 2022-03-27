@@ -11,7 +11,7 @@ window.onscroll = () =>{
    navbar.classList.remove('active');
 };
 
-let swiper = new Swiper(".home-slider", {
+var swiper = new Swiper(".home-slider", {
    loop:true,
    navigation: {
      nextEl: ".swiper-button-next",
@@ -19,7 +19,7 @@ let swiper = new Swiper(".home-slider", {
    },
 });
 
-let swiper = new Swiper(".reviews-slider", {
+var swiper = new Swiper(".reviews-slider", {
    grabCursor:true,
    loop:true,
    autoHeight:true,
@@ -38,14 +38,14 @@ let swiper = new Swiper(".reviews-slider", {
 });
 
 let loadMoreBtn = document.querySelector('.packages .load-more .btn');
-let currentItem = 3;
+let currentItem = 4;
 
 loadMoreBtn.onclick = () =>{
    let boxes = [...document.querySelectorAll('.packages .box-container .box')];
-   for (var i = currentItem; i < currentItem + 3; i++){
+   for (var i = currentItem; i < currentItem + 4; i++){
       boxes[i].style.display = 'inline-block';
    };
-   currentItem += 3;
+   currentItem += 4;
    if(currentItem >= boxes.length){
       loadMoreBtn.style.display = 'none';
    }
