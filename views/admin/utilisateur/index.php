@@ -17,25 +17,26 @@ if(isset($_GET['delete'])){
     };
 };
 
-require_once '../../../views/layouts/header.php'
+require_once '../../../views/layouts/admin-header.php'
 ?>
 
-<?php
+<section class="content">
+    <?php
 
-    if(isset($messages)){
-        foreach($messages as $message){
-            echo '<div>'.$message.'</div>';
+        if(isset($messages)){
+            foreach($messages as $message){
+                echo '<div>'.$message.'</div>';
+            }
         }
-    }
 
-?>
+    ?>
 
-    <div>
-        <div class="d-flex justify-content-between align-items-center">
-            <h1>Gestion des comptes</h1>
-            <a href="new.php" class="btn btn-primary">Créer un compte</a>
-        </div>
-        <!-- on liste tous les utilisateurs -->
+    <div class="heading">
+        <h1>Gestion des comptes</h1>
+        <a href="new.php" class="btn btn-primary">Créer un compte</a>
+    </div>
+    <!-- on liste tous les utilisateurs -->
+    <div class="width">
         <table class="table">
             <thead>
             <tr>
@@ -68,5 +69,6 @@ require_once '../../../views/layouts/header.php'
             </tbody>
         </table>
     </div>
+</section>
 
-<?php require_once '../../../views/layouts/footer.php'; ?>
+<?php require_once '../../../views/layouts/admin-footer.php'; ?>

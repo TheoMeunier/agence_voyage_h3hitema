@@ -38,45 +38,37 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php
-require_once '../../layouts/header.php';
+require_once '../../layouts/admin-header.php';
 ?>
 
-<div class="d-flex justify-content-between align-items-center">
-    <h1>Gestion des comptes</h1>
-    <a href="index.php" class="btn btn-primary">Liste des comptes</a>
-</div>
-
-<h3 class="mb-2">Créer un compte</h3>
-
-<form action="" method="post">
-
-    <?php
-    if(isset($messages)){
-        foreach($messages as $message){
-            echo '<div class="mb-3">'.$message.'</div>';
-        };
-    };
-    ?>
-
-    <div class="mb-3">
-        <label for="name" class="form-label">Nom d'utilisateur</label>
-        <input type="text" class="form-control" id="name" name="nom">
+<section class="content">
+    <div class="heading">
+        <h1>Gestion des comptes</h1>
+        <a href="index.php" class="btn btn-primary">Liste des comptes</a>
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Email</label>
-        <input type="email" class="form-control" id="password" name="email">
+
+    <div class="form">
+        <h3 class="titre">Créer un compte</h3>
+
+        <form action="" method="post">
+
+            <?php
+            if(isset($messages)){
+                foreach($messages as $message){
+                    echo '<div class="message">'.$message.'</div>';
+                };
+            };
+            ?>
+
+            <input type="text" class="champ" placeholder="Identifiant" name="nom">
+            <input type="email" class="champ" placeholder="Email" name="email">
+            <input type="password" class="champ" placeholder="Mot de passe" name="mdp">
+            <input type="password" class="champ" placeholder="Répétez MDP" name="cmdp">
+            <button type="submit" class="btn btn-primary" name="submit">Créer</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Mot de Passe</label>
-        <input type="password" class="form-control" id="password" name="mdp">
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Confirmez MDP</label>
-        <input type="password" class="form-control" id="password" name="cmdp">
-    </div>
-    <button type="submit" class="btn btn-primary" name="submit">Créer</button>
-</form>
+</section>
 
 <?php
-require_once '../../layouts/footer.php';
+require_once '../../layouts/admin-footer.php';
 ?>

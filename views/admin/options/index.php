@@ -6,7 +6,7 @@ require_once '../../../db.php';
 $sql = "SELECT * FROM TAG ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-require_once '../../../views/layouts/header.php'
+require_once '../../../views/layouts/admin-header.php'
 ?>
 
     <div>
@@ -51,4 +51,4 @@ require_once '../../../views/layouts/header.php'
         </table>
     </div>
 
-<?php require_once '../../../views/layouts/footer.php'; ?>
+<?php require_once '../../../views/layouts/admin-footer.php'; ?>

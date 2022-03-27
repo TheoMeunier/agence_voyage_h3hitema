@@ -5,7 +5,7 @@ require_once '../../../db.php';
 $sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-include 'views/layouts/header.php'
+require_once '../../layouts/admin-header.php'
 ?>
 
     <div>
@@ -50,4 +50,4 @@ include 'views/layouts/header.php'
         </table>
     </div>
 
-<?php include 'views/layouts/footer.php'; ?>
+<?php require_once '../../layouts/admin-footer.php'; ?>

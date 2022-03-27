@@ -18,6 +18,7 @@ if(isset($_POST['submit'])){
     $new_email = $_POST['email'];
     $new_old_mdp = hash('sha256', $_POST['ancien_mdp']);
     $new_mdp = hash('sha256', $_POST['nouveau_mdp']);
+    $cnew_mdp = hash('sha256', $_POST['cnouveau_mdp']);
     
     if($new_name != ""){
         $vname = $pdo->query("SELECT id FROM user WHERE name = '$new_name'");
@@ -48,11 +49,15 @@ if(isset($_POST['submit'])){
     if($new_old_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
         if($old_mdp == $new_old_mdp){
             if($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-                $insert = $pdo->query("UPDATE user SET password = '$new_mdp' WHERE id = '$edit_id'");
-                if(!$insert){
-                    $messages[] = "Une erreur est survenue dans la modification du mdp";
+                if($new_mdp == $cnew_mdp){
+                    $insert = $pdo->query("UPDATE user SET password = '$new_mdp' WHERE id = '$edit_id'");
+                    if(!$insert){
+                        $messages[] = "Une erreur est survenue dans la modification du mdp";
+                    }else{
+                        $messages[] = "Le mdp a bien été modifié";
+                    }
                 }else{
-                    $messages[] = "Le mdp a bien été modifié";
+                    $messages[] = 'Les deux nouveaux mdp ne correspondent pas';
                 }
             }else{
                 $messages[] = 'Veuillez indiquer le nouveau mdp';
@@ -67,51 +72,48 @@ if(isset($_POST['submit'])){
     }
 }
 
-require_once '../../../views/layouts/header.php'
+require_once '../../../views/layouts/admin-header.php'
 ?>
 
-<?php
+<section class="content">
 
-    if(isset($messages)){
-        foreach($messages as $message){
-            echo '<div>'.$message.'</div>';
-        }
-    }
-
-?>
-
-    <div>
-        <div class="d-flex justify-content-between align-items-center">
-            <h1>Gestion des comptes</h1>
-            <a href="index.php" class="btn btn-primary">Liste des comptes</a>
-        </div>
-        <!-- on liste tous les utilisateurs -->
-        <table class="table">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Mot de passe</th>
-                <th>action</th>
-            </tr>
-            </thead>
-
-            <tbody>
-                <form action="" method="post">
-                    <tr>
-                        <td><?= $edit_query['id']; ?></td>
-                        <td><input type="text" name="nom" value="<?=$edit_query['name'];?>"></td>
-                        <td><input type="email" name="email" value="<?=$edit_query['email'];?>"></td>
-                        <td>
-                            <input type="password" name="ancien_mdp" placeholder="Ancien mdp">
-                            <input type="password" name="nouveau_mdp" placeholder="Nouveau mdp">
-                        </td>
-                        <td><input type="submit" name="submit" value="Modifier" class="btn btn-success"></a></td>
-                    </tr>
-                </form>
-            </tbody>
-        </table>
+    <div class="heading">
+        <h1>Gestion des comptes</h1>
+        <a href="index.php" class="btn btn-primary">Liste des comptes</a>
     </div>
+    <!-- on liste tous les utilisateurs -->
+    <div class="form">
+        <form action="" method="post">
+            <?php
+                if(isset($messages)){
+                    foreach($messages as $message){
+                        echo '<div class="message">'.$message.'</div>';
+                    }
+                }
+            ?>
+            <div>
+                <label for="nom">Identifiant:</label>
+                <input type="text" class="champ" name="nom" value="<?=$edit_query['name'];?>">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" class="champ" name="email" value="<?=$edit_query['email'];?>">
+            </div>
+            <div>
+                <label for="mdp">Ancien MDP:</label>
+                <input type="password" class="champ" name="ancien_mdp" placeholder="Ancien mdp">
+            </div>
+            <div>
+                <label for="new_mdp">Nouveau MDP:</label>
+                <input type="password" class="champ" name="nouveau_mdp" placeholder="Nouveau mdp">
+            </div>
+            <div>
+                <label for="cnew_mdp">Répétez MDP:</label>
+                <input type="password" class="champ" name="cnouveau_mdp" placeholder="Répétez mdp">
+            </div>
+            <input type="submit" name="submit" value="Modifier" class="btn btn-success"></a>
+        </form>
+    </div>
+</section>
 
-<?php require_once '../../../views/layouts/footer.php'; ?>
+<?php require_once '../../../views/layouts/admin-footer.php'; ?>
