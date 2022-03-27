@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     $new_old_mdp = hash('sha256', $_POST['ancien_mdp']);
     $new_mdp = hash('sha256', $_POST['nouveau_mdp']);
     $cnew_mdp = hash('sha256', $_POST['cnouveau_mdp']);
-    
+
     if($new_name != ""){
         $vname = $pdo->query("SELECT id FROM user WHERE name = '$new_name'");
         if($old_name != $new_name && $vname->rowCount() > 0){

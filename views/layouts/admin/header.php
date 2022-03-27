@@ -16,7 +16,6 @@
             crossorigin="anonymous" defer></script>
 </head>
 <body>
-
 <header>
     <div class="logo">
         <a href="/views/home.php"><h1>JetLag</h1></a>
@@ -32,8 +31,6 @@
                     Destinations
                 </a>
             </li>
-        </ul>
-        <ul>
             <li>
                 <a href="/views/admin/voyage/index.php">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,8 +39,6 @@
                     Voyages
                 </a>
             </li>
-        </ul>
-        <ul>
             <li>
                 <a href="/views/admin/utilisateur/index.php">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,3 +62,4 @@
         </div>
     </nav>
 </header>
+<main class="container content">
