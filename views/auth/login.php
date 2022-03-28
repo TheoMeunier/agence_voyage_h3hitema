@@ -30,7 +30,7 @@ require_once '../layouts/admin/header.php';
                 <?php
                     if(isset($messages)){
                         foreach($messages as $message){
-                            echo '<div class="message">'.$message.'</div>';
+                            echo '<div class="message erreur">'.$message.'</div>';
                         };
                     };
                 ?>
