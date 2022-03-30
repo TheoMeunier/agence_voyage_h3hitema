@@ -1,6 +1,6 @@
 <?php
+session_start();
 
-require_once '../is_connected.php';
 require_once '../../../db.php';
 
 if(isset($_POST['submit'])){
@@ -27,41 +27,39 @@ if(isset($_POST['submit'])){
     }else{
         $messages[] = 'Cette destination existe déjà';
     }
-
 };
+
+require_once '../../layouts/admin/header.php';
 ?>
+        <h1>Ajouter une destination</h1>
 
-<?php
-require_once '../../layouts/admin-header.php';
-?>
-
-<section class="content">
-    <div class="heading">
-        <h1>Gestion des destinations</h1>
-        <a href="index.php" class="btn btn-primary">Liste des destinations</a>
-    </div>
-
-    <div class="form">
-        <h3 class="titre">Ajouter une destination</h3>
-
-        <form action="" method="post">
-
-            <?php
-            if(isset($messages)){
-                foreach($messages as $message){
-                    echo '<div class="message erreur">'.$message.'</div>';
-                };
-            };
-            ?>
-
-            <input type="text" class="champ" placeholder="Titre" name="titre" required>
-            <textarea name="desc" class="champ" style="resize:none;" rows="3" placeholder="Description" required></textarea>
-            <input type="file" name="image" class="champ" accept="image/png, image/jpg, image/jpeg, image/svg" required>
-            <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+        <form action="" method="post" class="mt-3">
+            <div class="mb-3">
+                <label for="title" class="from-label">Titre</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="">Options</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image</label>
+                <input type="file" name="image" class="form-control" accept="image/png, image/jpg, image/jpeg, image/svg" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" name="submit">Créer</button>
+            </div>
         </form>
-    </div>
-</section>
 
 <?php
-require_once '../../layouts/admin-footer.php';
+require_once '../../layouts/admin/footer.php';
 ?>
