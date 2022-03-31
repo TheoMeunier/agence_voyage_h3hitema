@@ -5,17 +5,15 @@ require_once '../../../db.php';
 
 if(isset($_POST['submit'])){
 
-    $titre = $_POST['titre'];
-    $desc = $_POST['desc'];
+    $titre = $_POST['title'];
+    $desc = $_POST['description'];
     $img = $_POST['image'];
 
     $vtitre = $pdo->query("SELECT name FROM `destination` WHERE name = '$titre'");
 
-    $date = date("Y-m-d h:i:sa");
-
     if($vtitre->rowCount() <= 0){
         if(strlen($desc) < 256){
-            $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at) VALUES('$titre', '$img', '$desc', '$date');");
+            $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at) VALUES('$titre', '$img', '$desc', NOW());");
             if($insert){
                 header('location:index.php');
             }else{
@@ -31,7 +29,13 @@ if(isset($_POST['submit'])){
 
 require_once '../../layouts/admin/header.php';
 ?>
-        <h1>Ajouter une destination</h1>
+
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
+        <h1>Gestion des destinations</h1>
+        <a href="index.php" class="btn btn-primary">Liste des destinations</a>
+    </div>
+
+        <h1 class="text-center">Ajouter une destination</h1>
 
         <form action="" method="post" class="mt-3">
             <div class="mb-3">

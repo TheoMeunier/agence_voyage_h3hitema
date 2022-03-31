@@ -9,7 +9,7 @@ $destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 require_once '../../../views/layouts/admin/header.php'
 ?>
 
-    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
         <h1>Gestion des destinations</h1>
         <a href="new.php" class="btn btn-primary">Ajouter une destination</a>
     </div>
@@ -38,12 +38,12 @@ require_once '../../../views/layouts/admin/header.php'
             <!-- on affiche tout les utilisateus-->
             <?php foreach ($destinations as $destination) : ?>
                 <tr>
-                    <td> <?= $destinations['id']; ?></td>
-                    <td> <?= $destinations['name']; ?></td>
-                    <td> <?= $destinations['created_at']; ?></td>
+                    <td> <?= $destination['id']; ?></td>
+                    <td> <?= $destination['name']; ?></td>
+                    <td> <?= $destination['created_at']; ?></td>
                     <td>
-                        <a href="edit.php?edit=<?= $destinations['id']; ?>" class="btn btn-warning">Modifier</a>
-                        <a href="index.php?delete=<?= $destinations['id']; ?>" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce compte ?')">Supprimer</a>
+                        <a href="edit.php?edit=<?= $destination['id']; ?>" class="btn btn-warning">Modifier</a>
+                        <a href="index.php?delete=<?= $destination['id']; ?>" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce compte ?')">Supprimer</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

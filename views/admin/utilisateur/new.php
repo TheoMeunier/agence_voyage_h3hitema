@@ -13,8 +13,6 @@ if(isset($_POST['submit'])){
     $vnom = $pdo->query("SELECT name FROM `user` WHERE name = '$nom'")->fetchAll(PDO::FETCH_ASSOC);
     $vemail = $pdo->query("SELECT email FROM `user` WHERE email = '$email'")->fetchAll(PDO::FETCH_ASSOC);
 
-    $date = date("Y-m-d h:i:sa");
-
     if(count($vnom) > 0){
         $messages[] = 'Cet utilisateur existe déjà !';
     }else{
@@ -24,7 +22,7 @@ if(isset($_POST['submit'])){
             if($mdp != $cmdp){
                 $messages[] = 'Les MDP ne correspondent pas !';
             }else{
-                $insert = $pdo->query("INSERT INTO user(name,email,password,created_at) VALUES('$nom','$email','$mdp','$date')");
+                $insert = $pdo->query("INSERT INTO user(name,email,password,created_at) VALUES('$nom','$email','$mdp', NOW())");
 
                 if($insert){
                     header('location:index.php');
@@ -40,7 +38,7 @@ if(isset($_POST['submit'])){
 <?php
 require_once '../../layouts/admin/header.php';
 ?>
-    <div class="heading">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
         <h1>Gestion des comptes</h1>
         <a href="index.php" class="btn btn-primary">Liste des comptes</a>
     </div>
