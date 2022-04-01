@@ -5,29 +5,29 @@ require_once '../../../db.php';
 
 if(isset($_POST['submit'])){
 
-    $nom = $_POST['nom'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
-    $mdp = hash('sha256', $_POST['mdp']);
-    $cmdp = hash('sha256', $_POST['cmdp']);
+    $password = hash('sha256', $_POST['password']);
+    $cpassword = hash('sha256', $_POST['cpassword']);
 
-    $vnom = $pdo->query("SELECT name FROM `user` WHERE name = '$nom'")->fetchAll(PDO::FETCH_ASSOC);
+    $vname = $pdo->query("SELECT name FROM `user` WHERE name = '$name'")->fetchAll(PDO::FETCH_ASSOC);
     $vemail = $pdo->query("SELECT email FROM `user` WHERE email = '$email'")->fetchAll(PDO::FETCH_ASSOC);
 
-    if(count($vnom) > 0){
-        $messages[] = 'Cet utilisateur existe déjà !';
+    if(count($vname) > 0){
+        $errors[] = 'Cet utilisateur existe déjà !';
     }else{
         if(count($vemail) > 0){
-            $messages[] = 'Cette addresse mail est déjà utilisée !';
+            $errors[] = 'Cette addresse mail est déjà utilisée !';
         }else{
-            if($mdp != $cmdp){
-                $messages[] = 'Les MDP ne correspondent pas !';
+            if($password != $cpassword){
+                $errors[] = 'Les MDP ne correspondent pas !';
             }else{
-                $insert = $pdo->query("INSERT INTO user(name,email,password,created_at) VALUES('$nom','$email','$mdp', NOW())");
+                $insert = $pdo->query("INSERT INTO user(name,email,password,created_at) VALUES('$name','$email','$password', NOW())");
 
                 if($insert){
                     header('location:index.php');
                 }else{
-                    $messages[] = "Création du compte aborté";
+                    $errors[] = "Création du compte aborté";
                 };
             };
         };
@@ -38,31 +38,40 @@ if(isset($_POST['submit'])){
 <?php
 require_once '../../layouts/admin/header.php';
 ?>
-    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
         <h1>Gestion des comptes</h1>
         <a href="index.php" class="btn btn-primary">Liste des comptes</a>
     </div>
 
-    <div class="form">
-        <h3 class="titre">Créer un compte</h3>
+    <h2 class="text-center">Créer un compte</h2>
 
-        <form action="" method="post">
+    <form action="" method="post" class="mt-3">
 
-            <?php
-            if(isset($messages)){
-                foreach($messages as $message){
-                    echo '<div class="message erreur">'.$message.'</div>';
-                };
+        <?php
+        if(isset($errors)){
+            foreach($errors as $error){
+                echo '<div class="message erreur">'.$error.'</div>';
             };
-            ?>
-
-            <input type="text" class="champ" placeholder="Identifiant" name="nom">
-            <input type="email" class="champ" placeholder="Email" name="email">
-            <input type="password" class="champ" placeholder="Mot de passe" name="mdp">
-            <input type="password" class="champ" placeholder="Répétez MDP" name="cmdp">
-            <button type="submit" class="btn btn-primary" name="submit">Créer</button>
-        </form>
-    </div>
+        };
+        ?>
+        <div class="mb-3">
+            <label for="name">Identifiant :</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="password">Mot de passe :</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="mb-3">
+            <label for="cpassword">Confirmez votre mot de passe :</label>
+            <input type="password" class="form-control" id="cpassword" name="cpassword">
+        </div>
+        <button type="submit" class="btn btn-primary" name="submit">Créer</button>
+    </form>
 
 <?php
 require_once '../../layouts/admin/footer.php';

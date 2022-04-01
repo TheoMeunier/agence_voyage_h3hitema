@@ -9,7 +9,7 @@ $users = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 require_once '../../../views/layouts/admin/header.php'
 ?>
 
-    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
         <h1>Gestion des comptes</h1>
         <a href="new.php" class="btn btn-primary">Créer un compte</a>
     </div>

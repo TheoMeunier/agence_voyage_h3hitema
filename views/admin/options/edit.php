@@ -1,10 +1,15 @@
 <?php
 require_once '../is_connected.php';
 
-require_once '../../../views/layouts/admin/footer.php'
+require_once '../../../views/layouts/admin/footer.php';
 ?>
 
-<h1>Modifier un tag</h1>
+<div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
+    <h1>Gestion des options</h1>
+    <a href="index.php" class="btn btn-primary">Liste des options</a>
+</div>
+
+<h2 class="text-center">Modifier un tag</h2>
 
 <form action="" method="post">
     <div class="mb-2">
@@ -17,5 +22,5 @@ require_once '../../../views/layouts/admin/footer.php'
 </form>
 
 <?php
-require_once '../../../views/layouts/admin/footer.php'
+require_once '../../../views/layouts/admin/footer.php';
 ?>

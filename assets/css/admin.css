@@ -69,15 +69,15 @@ header nav ul li a:hover{
     background-color: var(--gray);
 }
 
+svg{
+    width: 2rem;
+    color: var(--clr-primary);
+}
+
 .bottom{
     width: 20rem;
     position: fixed;
     left: 0; bottom: 0;
-}
-
-.underline{
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding-bottom: 1rem;
 }
 
 .content{
@@ -85,6 +85,11 @@ header nav ul li a:hover{
     display: flex;
     flex-direction: column;
     margin: 3rem 2rem;
+}
+
+.underline{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 1rem;
 }
 
 .message {
@@ -98,32 +103,7 @@ header nav ul li a:hover{
 .erreur{
     background-color: var(--red);
 }
+
 .succes{
     background-color: var(--green);
-}
-
-.content .form form label{
-    font-size: 1.2rem;
-    padding-bottom: 0.5rem;
-}
-
-.content .form form .champ
-{
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 2px solid rgba(0, 0, 0, 0);
-    background-color: var(--gray);
-    font-size: 1.1rem;
-    margin-bottom: 22px;
-    transition: .3s;
-}
-
-.content .form form .champ:hover
-{
-    background-color: var(--dark-gray);
-}
-
-svg{
-    width: 2rem;
-    color: var(--clr-primary);
 }

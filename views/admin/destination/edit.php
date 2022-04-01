@@ -72,7 +72,7 @@ require_once '../../../views/layouts/admin/header.php'
         <a href="index.php" class="btn btn-primary">Liste des destinations</a>
     </div>
 
-    <h1 class="text-center">Modifier la destination</h1>
+    <h2 class="text-center">Modifier la destination</h2>
 
     <!-- on liste tous les utilisateurs -->
         <form action="" method="post" class="mt-3">

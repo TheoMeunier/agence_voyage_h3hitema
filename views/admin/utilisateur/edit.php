@@ -13,63 +13,69 @@ if(isset($_GET['edit'])){
 if(isset($_POST['submit'])){
     $old_name = $edit_query['name'];
     $old_email = $edit_query['email'];
-    $old_mdp = $edit_query['password'];
-    $new_name = $_POST['nom'];
+    $old_password = $edit_query['password'];
+    $new_name = $_POST['name'];
     $new_email = $_POST['email'];
-    $new_old_mdp = hash('sha256', $_POST['ancien_mdp']);
-    $new_mdp = hash('sha256', $_POST['nouveau_mdp']);
-    $cnew_mdp = hash('sha256', $_POST['cnouveau_mdp']);
+    $last_password = hash('sha256', $_POST['last_password']);
+    $new_password = hash('sha256', $_POST['new_password']);
+    $cpassword = hash('sha256', $_POST['cpassword']);
 
     if($new_name != ""){
         $vname = $pdo->query("SELECT id FROM user WHERE name = '$new_name'");
         if($old_name != $new_name && $vname->rowCount() > 0){
-            $erreurs[] = 'Cet identifiant est déjà utilisé';
+            $errors[] = 'Cet identifiant est déjà utilisé';
         }else if($old_name != $new_name && $vname->rowCount() <= 0){
             $insert = $pdo->query("UPDATE user SET name = '$new_name' WHERE id = '$edit_id'");
             if(!$insert){
-                $erreurs[] = 'Une erreur est survenue dans la modification du nom';
+                $errors[] = 'Une erreur est survenue dans la modification du nom';
             }else{
-                $succes[] = "Le nom a bien été modifié";
+                $successes[] = "Le nom a bien été modifié";
             }
         }
     }
     if($new_email != ""){
         $vemail = $pdo->query("SELECT id FROM user WHERE email = '$new_email'");
         if($old_email != $new_email && $vemail->rowCount() > 0){
-            $erreurs[] = 'Cet email est déjà utilisé';
+            $errors[] = 'Cet email est déjà utilisé';
         }else if($old_email != $new_email && $vemail->rowCount() <= 0){
             $insert = $pdo->query("UPDATE user SET email = '$new_email' WHERE id = '$edit_id'");
             if(!$insert){
-                $erreurs[] = "Une erreur est survenue dans la modification de l'email";
+                $errors[] = "Une erreur est survenue dans la modification de l'email";
             }else{
-                $succes[] = "L'email a bien été modifié";
+                $successes[] = "L'email a bien été modifié";
             }
         }
     }
-    if ($new_old_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-        if ($old_mdp == $new_old_mdp){
-            if ($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-                if ($new_mdp == $cnew_mdp){
-                    $insert = $pdo->query("UPDATE user SET password = '$new_mdp' WHERE id = '$edit_id'");
+    if ($last_password != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
+        if ($old_password == $last_password){
+            if ($new_password != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
+                if ($new_password == $cpassword){
+                    $insert = $pdo->query("UPDATE user SET password = '$new_password' WHERE id = '$edit_id'");
                     if (!$insert){
-                        $erreurs[] = "Une erreur est survenue dans la modification du mdp";
+                        $errors[] = "Une erreur est survenue dans la modification du mdp";
                     } else {
-                        $succes[] = "Le mdp a bien été modifié";
+                        $successes[] = "Le mdp a bien été modifié";
                     }
                 } else {
-                    $erreurs[] = 'Les deux nouveaux mdp ne correspondent pas';
+                    $errors[] = 'Les deux nouveaux mdp ne correspondent pas';
                 }
             } else {
-                $erreurs[] = 'Veuillez indiquer le nouveau mdp';
+                $errors[] = 'Veuillez indiquer le nouveau mdp';
             }
-        } else if ($old_mdp != $new_old_mdp){
-            $erreurs[] = "L'ancien mdp ne correspond pas à celui indiqué";
+        } else if ($old_password != $last_password){
+            $errors[] = "L'ancien mdp ne correspond pas à celui indiqué";
         }
     }else{
-        if($new_mdp != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-            $erreurs[] = 'Entrez l\'ancien mdp pour pouvoir le modifier';
+        if($new_password != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
+            $errors[] = 'Entrez l\'ancien mdp pour pouvoir le modifier';
         }
     }
+}
+
+if (isset($successes) && !isset($errors)){
+    header('location:index.php');
+} else if (isset($successes) && isset($errors)){
+    header('location:edit.php?edit='.$edit_id);
 }
 
 require_once '../../../views/layouts/admin/header.php'
@@ -77,48 +83,49 @@ require_once '../../../views/layouts/admin/header.php'
 
 <section class="content">
 
-    <div class="heading">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
         <h1>Gestion des comptes</h1>
         <a href="index.php" class="btn btn-primary">Liste des comptes</a>
     </div>
+
+    <h2 class="text-center">Modifier un compte</h2>
+
     <!-- on liste tous les utilisateurs -->
-    <div class="form">
-        <form action="" method="post">
-            <?php
-                if(isset($success)){
-                    foreach($success as $success){
-                        echo '<div class="message succes">'.$success.'</div>';
-                    }
+    <form action="" method="post" class="mt-3">
+        <?php
+            if(isset($successes)){
+                foreach($successes as $success){
+                    echo '<div class="message succes">'.$success.'</div>';
                 }
-                if(isset($erreurs)){
-                    foreach($erreurs as $erreur){
-                        echo '<div class="message erreur">'.$erreur.'</div>';
-                    }
+            }
+            if(isset($errors)){
+                foreach($errors as $error){
+                    echo '<div class="message erreur">'.$error.'</div>';
                 }
-            ?>
-            <div>
-                <label id="name" for="nom">Nom</label>
-                <input type="text" class="champ" name="name" value="<?=$edit_query['name'];?>">
-            </div>
-            <div>
-                <label id="email " for="email">Email</label>
-                <input type="email" class="champ" name="email" value="<?=$edit_query['email'];?>">
-            </div>
-            <div>
-                <label id="last_password" for="last_password">Mot de passe actuel</label>
-                <input type="password" class="champ" name="last_password" placeholder="Ancien mdp">
-            </div>
-            <div>
-                <label id="new_password" for="new_password">Nouveau mot de passe</label>
-                <input type="password" class="champ" name="new_password">
-            </div>
-            <div>
-                <label id="confirmation_password" for="confirmation_password">Confirmation du mot de passe</label>
-                <input type="password" class="champ" name="confirmation_password">
-            </div>
-            <button type="submit" class="btn btn-success">Modifier</button>
-        </form>
-    </div>
+            }
+        ?>
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" id="name" class="form-control" name="name" value="<?=$edit_query['name'];?>">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" name="email" value="<?=$edit_query['email'];?>">
+        </div>
+        <div class="mb-3">
+            <label for="last_password" class="form-label">Mot de passe actuel</label>
+            <input type="password" id="last_password" class="form-control" name="last_password">
+        </div>
+        <div class="mb-3">
+            <label for="new_password" class="form-label">Nouveau mot de passe</label>
+            <input type="password" id="new_password" class="form-control" name="new_password">
+        </div>
+        <div class="mb-3">
+            <label for="cpassword" class="form-label">Confirmation du mot de passe</label>
+            <input type="password" id="cpassword" class="form-control" name="cpassword">
+        </div>
+        <button type="submit" name="submit" class="btn btn-success">Modifier</button>
+    </form>
 </section>
 
 <?php require_once '../../../views/layouts/admin/footer.php'; ?>

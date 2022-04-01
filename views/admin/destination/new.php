@@ -5,25 +5,26 @@ require_once '../../../db.php';
 
 if(isset($_POST['submit'])){
 
-    $titre = $_POST['title'];
-    $desc = $_POST['description'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
     $img = $_POST['image'];
 
-    $vtitre = $pdo->query("SELECT name FROM `destination` WHERE name = '$titre'");
+    $vtitle = $pdo->query("SELECT name FROM `destination` WHERE name = '$title'");
 
-    if($vtitre->rowCount() <= 0){
-        if(strlen($desc) < 256){
-            $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at) VALUES('$titre', '$img', '$desc', NOW());");
+    if($vtitle->rowCount() <= 0){
+        if(strlen($description) < 256){
+            $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at) VALUES('$title', '$img', '$description', NOW());");
             if($insert){
+                $successes[] = 'La destination a bien été ajoutée';
                 header('location:index.php');
             }else{
-                $messages[] = 'La destination n\'a pas pu être ajouté';
+                $errors[] = 'La destination n\'a pas pu être ajouté';
             }
         }else{
-            $messages[] = 'La description est trop longue (255 caractères max)';
+            $errors[] = 'La description est trop longue (255 caractères max)';
         }
     }else{
-        $messages[] = 'Cette destination existe déjà';
+        $errors[] = 'Cette destination existe déjà';
     }
 };
 
@@ -35,9 +36,18 @@ require_once '../../layouts/admin/header.php';
         <a href="index.php" class="btn btn-primary">Liste des destinations</a>
     </div>
 
-        <h1 class="text-center">Ajouter une destination</h1>
+        <h2 class="text-center">Ajouter une destination</h2>
 
         <form action="" method="post" class="mt-3">
+
+            <?php
+            if (isset($errors)){
+                foreach ($errors as $error){
+                    echo '<div class="message erreur">'.$error.'</div>';
+                }
+            }
+            ?>
+
             <div class="mb-3">
                 <label for="title" class="from-label">Titre</label>
                 <input type="text" class="form-control" name="title" required>

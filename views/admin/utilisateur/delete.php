@@ -12,6 +12,6 @@ if (isset($id)){
     $query = $pdo->prepare("DELETE FROM user WHERE id = :id_utilisateur");
     $query->execute(['id_utilisateur'=>$id]);
 
-    $success = "L'utilisateur a bien éte supprimer";
+    $successes = "L'utilisateur a bien éte supprimer";
     header('location: index.php');
 }

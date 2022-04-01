@@ -4,7 +4,12 @@ require_once '../is_connected.php';
 require_once '../../../views/layouts/admin/header.php'
 ?>
 
-<h1>Créer un tag</h1>
+<div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
+    <h1>Gestion des options</h1>
+    <a href="index.php" class="btn btn-primary">Liste des options</a>
+</div>
+
+<h2 class="text-center">Créer un tag</h2>
 
 <form action="" method="post">
     <div class="mb-2">
