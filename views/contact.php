@@ -1,5 +1,5 @@
 <?php
-require_once 'layouts/header.php';
+require_once '/views/layouts/header.php';
 ?>
 
 
@@ -24,5 +24,5 @@ require_once 'layouts/header.php';
    </form>
 
 <?php
-require_once 'layouts/footer.php';
+require_once '/views/layouts/footer.php';
 ?>

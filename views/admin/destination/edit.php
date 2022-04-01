@@ -54,10 +54,8 @@ if(isset($_POST['submit'])){
     
 }
 
-require_once '../../../views/layouts/admin-header.php'
+require_once '../../../views/layouts/admin/header.php'
 ?>
-
-<section class="content">
 
     <div class="heading">
         <h1>Gestion des destinations</h1>
@@ -93,6 +91,5 @@ require_once '../../../views/layouts/admin-header.php'
             <input type="submit" name="submit" value="Modifier" class="btn btn-success"></a>
         </form>
     </div>
-</section>
 
-<?php require_once '../../../views/layouts/admin-footer.php'; ?>
+<?php require_once '../../../views/layouts/admin/footer.php'; ?>

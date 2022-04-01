@@ -62,4 +62,4 @@
         </div>
     </nav>
 </header>
-<main class="container content">
+<main class="content">

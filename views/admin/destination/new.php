@@ -32,10 +32,9 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php
-require_once '../../layouts/admin-header.php';
+require_once '../../layouts/admin/header.php';
 ?>
 
-<section class="content">
     <div class="heading">
         <h1>Gestion des destinations</h1>
         <a href="index.php" class="btn btn-primary">Liste des destinations</a>
@@ -60,8 +59,7 @@ require_once '../../layouts/admin-header.php';
             <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
         </form>
     </div>
-</section>
 
 <?php
-require_once '../../layouts/admin-footer.php';
+require_once '../../layouts/admin/footer.php';
 ?>

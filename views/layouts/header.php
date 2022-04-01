@@ -13,7 +13,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="/assets/css/style.css">
+   <link rel="stylesheet" href="../../assets/css/style.css">
 
 </head>
 <body>
@@ -24,7 +24,7 @@
        <div id="menu-btn" class="fas fa-bars"></div>
 
        <ul>
-           <li><a href="/views/home.php">Home</a></li>
+           <li><a href="../../index.php">Home</a></li>
            <li><a href="/views/destinations.php">Destination</a></li>
            <li><a href="/views/voyages.php">Voyages</a></li>
            <li><a href="/views/contact.php">Contact</a></li>
