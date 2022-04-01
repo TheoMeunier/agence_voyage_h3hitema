@@ -82,12 +82,12 @@ require_once '../../../views/layouts/admin/header.php'
             <?php
             if (isset($successes)) {
                 foreach ($successes as $success) {
-                    echo '<div class="message succes">'.$success.'</div>';
+                    echo '<p class="message succes">'.$success.'</p>';
                 }
             }
             if (isset($errors)) {
                 foreach ($errors as $error) {
-                    echo '<div class="message erreur">'.$error.'</div>';
+                    echo '<p class="message erreur">'.$error.'</p>';
                 }
             }
             ?>

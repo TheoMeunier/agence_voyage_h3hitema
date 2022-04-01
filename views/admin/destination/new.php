@@ -43,7 +43,7 @@ require_once '../../layouts/admin/header.php';
             <?php
             if (isset($errors)){
                 foreach ($errors as $error){
-                    echo '<div class="message erreur">'.$error.'</div>';
+                    echo '<p class="message erreur">'.$error.'</p>';
                 }
             }
             ?>
