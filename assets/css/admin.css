@@ -110,12 +110,8 @@ svg{
 
 /* LOGIN FORM */
 
-body{
-    font-family: MontSerrat, sans-serif;
-}
-
 .box{
-    margin: 0 auto;
+    margin: auto auto;
     width: 500px;
     height: auto;
     padding: 1.5rem;

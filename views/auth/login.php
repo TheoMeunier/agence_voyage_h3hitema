@@ -16,9 +16,8 @@ if (isset($_POST['submit'])){
         if ($vpassword-> rowCount() > 0){
             $get_id = $vpassword->fetch(PDO::FETCH_ASSOC);
             $_SESSION['id'] = $get_id['id'];
-            echo $_SESSION['id'];
             $successes[] = 'Vous vous êtes bien connecté';
-            // header('location:../admin/options/index.php');
+            header('location:../admin/options/index.php');
         } else{
             $password_errors[] = 'Le mot de passe est incorrecte';
         }
