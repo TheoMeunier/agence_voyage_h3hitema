@@ -60,8 +60,10 @@ if (isset($_POST['submit'])) {
     }
 }
 
-if (isset($successes) && !isset($errors)) {
+if (isset($successes) && !isset($errors)){
     header('location:index.php');
+} else if (isset($successes) && isset($errors)){
+    header('location:edit.php?edit='.$edit_id);
 }
 
 require_once '../../../views/layouts/admin/header.php'

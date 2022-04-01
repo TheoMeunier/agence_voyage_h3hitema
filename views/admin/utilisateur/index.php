@@ -48,7 +48,7 @@ require_once '../../../views/layouts/admin/header.php'
                         <td>
                             <a href="edit.php?edit=<?= $user['id']; ?>" class="btn btn-warning">Modifier</a>
                             <form action= "delete.php?id=<?=$user['id'] ?>" method="post"
-                                  onsubmit="return confirm('Voulez vous vraiment effectuer cette action ?')" style="display: inline">
+                                  onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
                         </td>

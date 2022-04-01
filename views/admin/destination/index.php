@@ -43,7 +43,9 @@ require_once '../../../views/layouts/admin/header.php'
                     <td> <?= $destination['created_at']; ?></td>
                     <td>
                         <a href="edit.php?edit=<?= $destination['id']; ?>" class="btn btn-warning">Modifier</a>
-                        <a href="index.php?delete=<?= $destination['id']; ?>" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce compte ?')">Supprimer</a>
+                        <form action= "delete.php?id=<?=$destination['id'] ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach; ?>

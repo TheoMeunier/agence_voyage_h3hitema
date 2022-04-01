@@ -9,9 +9,9 @@ $id = $_GET['id'];
 
 //si l'id est alors on crée la request
 if (isset($id)){
-    $query = $pdo->prepare("DELETE FROM user WHERE id = :id_utilisateur");
+    $query = $pdo->prepare("DELETE FROM destination WHERE id = :id_utilisateur");
     $query->execute(['id_utilisateur'=>$id]);
 
-    $successes = "L'utilisateur a bien éte supprimer";
+    $successes = "La destination a bien été supprimée";
     header('location: index.php');
 }
