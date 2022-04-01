@@ -4,28 +4,12 @@ require_once '../is_connected.php';
 require_once '../../../db.php';
 
 $sql = "SELECT * FROM user ORDER BY id ASC";
-$options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
-if(isset($_GET['delete'])){
-    if($_GET['delete'] != $_SESSION['id']){
-        $delete_id = $_GET['delete'];
-        $delete_query = $pdo->query("DELETE FROM user WHERE id = '$delete_id'");
-        if($delete_query){
-            header('location:index.php');
-        }else{
-            $messages[] = 'Le compte n\'a pas pu être supprimé';
-        };
-    }else{
-        $messages[] = 'Vous ne pouvez pas supprimer le compte sur lequel vous êtes actuellement';
-    }
-};
+$users = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 require_once '../../../views/layouts/admin/header.php'
 ?>
 
-<section class="content">
-
-    <div class="heading">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
         <h1>Gestion des comptes</h1>
         <a href="new.php" class="btn btn-primary">Créer un compte</a>
     </div>
@@ -39,28 +23,34 @@ require_once '../../../views/layouts/admin/header.php'
     ?>
 
     <!-- on liste tous les utilisateurs -->
-    <div class="width">
         <table class="table">
             <thead>
                 <tr class="table-header">
-                    <th>ID</th>
-                    <th>IDENTIFIANT</th>
-                    <th>CRÉÉ LE</th>
-                    <th>ACTION</th>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Rôles</th>
+                    <th>Crée le</th>
+                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
-            <?php if (count($options) > 0) { ?>
+            <?php if (count($users) > 0) { ?>
                 <!-- on affiche tout les utilisateus-->
-                <?php foreach ($options as $option) : ?>
+                <?php foreach ($users as $user) : ?>
                     <tr class="tr_delete">
-                        <td class="td_delete"> <?= $option['id']; ?></td>
-                        <td class="td_delete"> <?= $option['name']; ?></td>
-                        <td class="td_delete"> <?= $option['created_at']; ?></td>
-                        <td class="td_delete">
-                            <a href="edit.php?edit=<?= $option['id']; ?>" class="btn btn-warning">Modifier</a>
-                            <a href="index.php?delete=<?= $option['id']; ?>" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce compte ?')">Supprimer</a>
+                        <td> <?= $user['id']; ?></td>
+                        <td> <?= $user['name']; ?></td>
+                        <td> <?= $user['email']; ?></td>
+                        <td> <?= $user['is_admin'] === 1 ? 'admin' : ''; ?></td>
+                        <td> <?= $user['created_at']; ?></td>
+                        <td>
+                            <a href="edit.php?edit=<?= $user['id']; ?>" class="btn btn-warning">Modifier</a>
+                            <form action= "delete.php?id=<?=$user['id'] ?>" method="post"
+                                  onsubmit="return confirm('Voulez vous vraiment effectuer cette action ?')" style="display: inline">
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -71,7 +61,5 @@ require_once '../../../views/layouts/admin/header.php'
             <?php } ?>
             </tbody>
         </table>
-    </div>
-</section>
 
 <?php require_once '../../../views/layouts/admin/footer.php'; ?>

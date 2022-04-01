@@ -11,7 +11,7 @@ require_once '../../../views/layouts/admin/header.php'
 
         <div class="d-flex justify-content-between align-items-center">
             <h1>Gestion des Options</h1>
-            <a href="admin/new.php" class="btn btn-primary">Crée une Options</a>
+            <a href="new.php" class="btn btn-primary">Crée une Options</a>
         </div>
         <!-- on liste tout les utilisateurs -->
         <table class="table">
