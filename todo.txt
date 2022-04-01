@@ -1,4 +1,4 @@
-x = Pas fais
+x = Pas fait
 
 
 A revoir:
@@ -15,4 +15,9 @@ A revoir:
 A Faire:
     - upload images
     - Vérifier les entrées Titre et description des formulaires pour éviter les injections SQL avec les '
+    - Barre de recherche pour chaque CRUD
     - Search for Home Pages
+    - CRUD TAG
+    - récupérer le is_admin dans index.php du CRUD utilisateurs
+    - Boucles destinations et voyages du site
+    - Partie fonctionnelle du formulaire de contact
