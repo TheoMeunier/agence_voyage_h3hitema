@@ -2,7 +2,7 @@
 require_once 'layouts/header.php';
 ?>
 
-<div class="heading" style="background:url(/assets/img/header-bg-2.png) no-repeat">
+<div class="heading" style="background:url(../assets/img/header-bg-2.png) no-repeat">
    <h1>packages</h1>
 </div>
 
@@ -16,7 +16,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-1.jpg" alt="">
+            <img src="../assets/img/img-1.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -27,7 +27,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-2.jpg" alt="">
+            <img src="../assets/img/img-2.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -38,7 +38,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-3.jpg" alt="">
+            <img src="../assets/img/img-3.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -49,7 +49,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-4.jpg" alt="">
+            <img src="../assets/img/img-4.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -60,7 +60,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-5.jpg" alt="">
+            <img src="../assets/img/img-5.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -71,7 +71,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-6.jpg" alt="">
+            <img src="../assets/img/img-6.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -82,7 +82,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-7.jpg" alt="">
+            <img src="../assets/img/img-7.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -93,7 +93,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-8.jpg" alt="">
+            <img src="../assets/img/img-8.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -104,7 +104,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-9.jpg" alt="">
+            <img src="../assets/img/img-9.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -115,7 +115,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-10.jpg" alt="">
+            <img src="../assets/img/img-10.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -126,7 +126,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-11.jpg" alt="">
+            <img src="../assets/img/img-11.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -137,7 +137,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="/assets/img/img-12.jpg" alt="">
+            <img src="../assets/img/img-12.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>

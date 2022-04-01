@@ -2,7 +2,7 @@
 
 <!-- footer section starts  -->
 
-<footer class="footer">
+<section class="footer">
 
    <div class="box-container">
       <div class="box">
@@ -29,7 +29,7 @@
 
    <div class="credit"> Créé par <span>JetLag</span> | Tous droits réservés ! </div>
 
-</footer>
+</section>
 
 <!-- footer section ends -->
 

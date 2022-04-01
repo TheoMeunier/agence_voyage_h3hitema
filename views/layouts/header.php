@@ -13,22 +13,26 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../../assets/css/style.css">
+   <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
+
 <body>
 <!-- header section starts  -->
-   <nav class="navbar">
-       <a href="home.php" class="logo">JetLag.</a>
 
-       <div id="menu-btn" class="fas fa-bars"></div>
+    <section class="header">
+    
+        <a href="/index.php" class="logo">JetLag.</a>
 
-       <ul>
-           <li><a href="../../index.php">Home</a></li>
-           <li><a href="/views/destinations.php">Destination</a></li>
-           <li><a href="/views/voyages.php">Voyages</a></li>
-           <li><a href="/views/contact.php">Contact</a></li>
-       </ul>
-   </nav>
+        <nav class="navbar">
+            <a href="/index.php">Home</a>
+            <a href="/views/destinations.php">Destination</a>
+            <a href="/views/voyages.php">Voyages</a>
+            <a href="/views/contact.php">Contact</a>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </section>
 
 <main class="container">

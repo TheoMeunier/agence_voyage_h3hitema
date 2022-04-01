@@ -1,7 +1,12 @@
 <?php
-require_once '/views/layouts/header.php';
+require_once 'layouts/header.php';
 ?>
 
+<div class="heading" style="background:url(/assets/img/header-bg-3.png) no-repeat">
+   <h1>Contactez nous !</h1>
+</div>
+
+<section class="booking">
 
    <h1 class="heading-title">Nous contacter</h1>
 
@@ -23,6 +28,8 @@ require_once '/views/layouts/header.php';
        <button type="submit" class="btn" name="submit">Envoyer</button>
    </form>
 
+</section>
+
 <?php
-require_once '/views/layouts/footer.php';
+require_once 'layouts/footer.php';
 ?>
