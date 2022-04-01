@@ -12,6 +12,7 @@ if (isset($id)){
     $query = $pdo->prepare("DELETE FROM destination WHERE id = :id_utilisateur");
     $query->execute(['id_utilisateur'=>$id]);
 
-    $successes = "La destination a bien été supprimée";
+    $successes[] = "La destination a bien été supprimée";
+    $_SESSION['successes'] = $successes;
     header('location: index.php');
 }

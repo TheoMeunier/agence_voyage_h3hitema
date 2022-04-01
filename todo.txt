@@ -8,8 +8,8 @@ A revoir:
     x - revoir le js
     x - revoir les images
     x - nom de variables admin utilisateur
-    x - faire des classe générique et nos des class par page
-    x - Créer un composant pour les messages flash
+    x - faire des classes génériques et non des classes par page
+    x - Revoir le composant pour les messages flash
 
 
 A Faire:
@@ -18,6 +18,5 @@ A Faire:
     - Barre de recherche pour chaque CRUD
     - Search for Home Pages
     - CRUD TAG
-    - récupérer le is_admin dans index.php du CRUD utilisateurs
     - Boucles destinations et voyages du site
     - Partie fonctionnelle du formulaire de contact

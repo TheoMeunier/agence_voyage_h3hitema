@@ -32,8 +32,12 @@ header{
     box-shadow: var(--box-shadow);
     width: 20rem!important;
     min-height: 100vh;
+}
+
+.sticky{
     position: sticky;
     top: 0; left: 0;
+    z-index: 1000;
 }
 
 header .logo{
@@ -92,20 +96,31 @@ svg{
     padding-bottom: 1rem;
 }
 
-.message {
-    width: 100%;
-    color: var(--white);
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    margin-bottom: 22px;
+/* MESSAGE */
+
+.message{
+    width: 80%;
+    position: sticky;
+    top: 0; left: 0;
+    z-index: 10000;
+    border-radius: .5rem;
+    padding: .5rem 2rem;
+    margin: 0 auto 1rem auto;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
 }
 
-.erreur{
-    background-color: var(--red);
+.message i{
+    font-size: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
 }
 
-.succes{
-    background-color: var(--green);
+.message i:hover{
+    color: var(--red);
 }
 
 /* LOGIN FORM */

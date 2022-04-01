@@ -1,7 +1,8 @@
 <?php
 
-require_once '../is_connected.php';
 require_once '../../../db.php';
+require_once '../is_connected.php';
+require_once '../is_messages.php';
 
 if(isset($_GET['edit'])){
     $edit_id = $_GET['edit'];
@@ -73,15 +74,33 @@ if(isset($_POST['submit'])){
 }
 
 if (isset($successes) && !isset($errors)){
+    $_SESSION['successes'] = $successes;
     header('location:index.php');
 } else if (isset($successes) && isset($errors)){
+    $_SESSION['errors'] = $errors;
+    $_SESSION['successes'] = $successes;
+    header('location:edit.php?edit='.$edit_id);
+} else if (!isset($successes) && isset($errors)){
+    $_SESSION['errors'] = $errors;
     header('location:edit.php?edit='.$edit_id);
 }
 
-require_once '../../../views/layouts/admin/header.php'
-?>
+require_once '../../../views/layouts/admin/header.php';
 
-<section class="content">
+if (isset($success_messages)) {
+    foreach ($success_messages as $success){
+        echo '<p class="message alert-success"><span style="display: flex; align-items: center;"><i style="color: green; font-size: 1.5rem; padding-right: 1rem;" class="fa-regular fa-circle-check"></i>'.$success.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
+    }
+    unset($success_messages);
+}
+if (isset($error_messages)) {
+    foreach ($error_messages as $error){
+        echo '<p class="message alert-danger"><span style="display: flex; align-items: center;"><i style="color: red; font-size: 1.5rem; padding-right: 1rem;" class="fa-solid fa-xmark"></i>'.$error.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
+    }
+    unset($error_messages);
+}
+
+?>
 
     <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
         <h1>Gestion des comptes</h1>
@@ -92,18 +111,6 @@ require_once '../../../views/layouts/admin/header.php'
 
     <!-- on liste tous les utilisateurs -->
     <form action="" method="post" class="mt-3">
-        <?php
-            if(isset($successes)){
-                foreach($successes as $success){
-                    echo '<p class="message succes">'.$success.'</p>';
-                }
-            }
-            if(isset($errors)){
-                foreach($errors as $error){
-                    echo '<p class="message erreur">'.$error.'</p>';
-                }
-            }
-        ?>
         <div class="mb-3">
             <label for="nom" class="form-label">Nom</label>
             <input type="text" id="name" class="form-control" name="name" value="<?=$edit_query['name'];?>">
@@ -126,6 +133,5 @@ require_once '../../../views/layouts/admin/header.php'
         </div>
         <button type="submit" name="submit" class="btn btn-success">Modifier</button>
     </form>
-</section>
 
 <?php require_once '../../../views/layouts/admin/footer.php'; ?>

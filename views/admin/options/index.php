@@ -1,7 +1,7 @@
 <?php
 
-require_once '../is_connected.php';
 require_once '../../../db.php';
+require_once '../is_connected.php';
 
 $sql = "SELECT * FROM TAG ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
