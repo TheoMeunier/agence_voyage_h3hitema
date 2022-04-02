@@ -20,3 +20,4 @@ A Faire:
     - CRUD TAG
     - Boucles destinations et voyages du site
     - Partie fonctionnelle du formulaire de contact
+    - Refaire le sticky de la barre du nav du panel admin (Jean)
