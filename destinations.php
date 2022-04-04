@@ -1,6 +1,6 @@
 <?php
 require_once 'db.php';
-$sql="select name,image,description from destination";
+$sql="SELECT id,name,image,description FROM DESTINATION";
 $destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 require_once 'layouts/header.php';
 ?>
@@ -24,8 +24,7 @@ require_once 'layouts/header.php';
            <div class="content">
                <h3><?= $destination['name']; ?></h3>
                <p><?= $destination['description']; ?></p>
-               <a href="book.php" class="btn">book now</a>
-
+               <a href="voyages.php?destination=<?= $destination['id'] ?>" class="btn">Voir les voyages</a>
            </div>
        </div>
        <?php endforeach; ?>

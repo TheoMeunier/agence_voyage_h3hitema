@@ -1,19 +1,28 @@
 <?php
 require_once 'db.php';
-$sql="select name,image,description from travel";
+
+$destination_id = $_GET['destination'];
+
+if (isset($destination_id)){
+   $sql="SELECT name,image,description FROM TRAVEL WHERE destination_id = '$destination_id'";
+} else{
+   $sql="SELECT name,image,description FROM TRAVEL";
+}
+
 $travels = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
 require_once 'layouts/header.php';
 ?>
 
 <div class="heading" style="background:url(assets/img/header-bg-2.png) no-repeat">
-   <h1>packages</h1>
+   <h1>Voyages</h1>
 </div>
 
 <!-- packages section starts  -->
 
 <section class="packages">
 
-   <h1 class="heading-title">top destinations</h1>
+   <h1 class="heading-title">Les meilleurs voyages !</h1>
 
    <div class="box-container">
        <?php foreach ($travels as $travel):  ?>
@@ -22,10 +31,8 @@ require_once 'layouts/header.php';
                    <img src="/assets/uploaded_img/<?= $travel['image']; ?>" alt="">
                </div>
                <div class="content">
-                   <h3><?= $travel['name']; ?></h3>
-                   <p><?= $travel['description']; ?></p>
-                   <a href="book.php" class="btn">book now</a>
-
+                  <h3><?= $travel['name']; ?></h3>
+                  <p><?= $travel['description']; ?></p>
                </div>
            </div>
        <?php endforeach; ?>
