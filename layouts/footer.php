@@ -7,7 +7,7 @@
    <div class="box-container">
       <div class="box">
          <h3>Liens utiles</h3>
-         <a href="/views/contact.php"> <span><i class="fas fa-angle-right"></i></span> Des questions ?</a>
+         <a href="/contact.php"> <span><i class="fas fa-angle-right"></i></span> Des questions ?</a>
          <a href="/views/about.php"> <span><i class="fas fa-angle-right"></i></span> A propos</a>
          <a href="#"> <span><i class="fas fa-angle-right"></i></span> Politique des données</a>
          <a href="#"> <span><i class="fas fa-angle-right"></i></span> Conditions d'utilisations</a>
@@ -15,7 +15,7 @@
 
       <div class="box center">
          <h3>Contactez nous !</h3>
-         <a href="/views/contact.php"> <span><i class="fas fa-envelope"></i></span> Page contact </a>
+         <a href="/contact.php"> <span><i class="fas fa-envelope"></i></span> Page contact </a>
       </div>
 
       <div class="box flex-end">

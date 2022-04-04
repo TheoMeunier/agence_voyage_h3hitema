@@ -1,13 +1,13 @@
 <?php
 
-require_once '../../../db.php';
+require_once '../../db.php';
 require_once '../is_connected.php';
 require_once '../is_messages.php';
 
 $sql = "SELECT * FROM user ORDER BY id ASC";
 $users = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-require_once '../../../views/layouts/admin/header.php';
+require_once '../../layouts/admin/header.php';
 
 if (isset($success_messages)) {
     foreach ($success_messages as $success){
@@ -69,4 +69,4 @@ if (isset($error_messages)) {
             </tbody>
         </table>
 
-<?php require_once '../../../views/layouts/admin/footer.php'; ?>
+<?php require_once '../../layouts/admin/footer.php'; ?>

@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once '../../db.php';
+require_once 'db.php';
 
 if (isset($_POST['submit'])){
 
@@ -25,8 +25,6 @@ if (isset($_POST['submit'])){
         $name_errors[] = 'L\'identifiant est incorrecte';
     }
 }
-
-require_once '../layouts/admin/header.php';
 ?>
     
     <div class="box">
@@ -95,7 +93,3 @@ require_once '../layouts/admin/header.php';
             })
         }
     </script>
-
-<?php
-require_once '../layouts/admin/footer.php';
-?>

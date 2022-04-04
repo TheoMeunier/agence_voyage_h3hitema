@@ -1,9 +1,9 @@
 <?php
 
-require_once '../../../db.php';
+require_once '../../db.php';
 require_once '../is_connected.php';
 
-require_once '../../../views/layouts/admin/footer.php';
+require_once '../../layouts/admin/header.php'
 ?>
 
 <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
@@ -11,7 +11,7 @@ require_once '../../../views/layouts/admin/footer.php';
     <a href="index.php" class="btn btn-primary">Liste des options</a>
 </div>
 
-<h2 class="text-center">Modifier un tag</h2>
+<h2 class="text-center">Créer un tag</h2>
 
 <form action="" method="post">
     <div class="mb-2">
@@ -24,5 +24,5 @@ require_once '../../../views/layouts/admin/footer.php';
 </form>
 
 <?php
-require_once '../../../views/layouts/admin/footer.php';
+require_once '../../layouts/admin/header.php'
 ?>

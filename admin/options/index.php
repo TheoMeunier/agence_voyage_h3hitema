@@ -1,12 +1,12 @@
 <?php
 
-require_once '../../../db.php';
+require_once '../../db.php';
 require_once '../is_connected.php';
 
 $sql = "SELECT * FROM TAG ORDER BY id ASC";
 $options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-require_once '../../../views/layouts/admin/header.php'
+require_once '../../layouts/admin/header.php'
 ?>
 
 <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
@@ -49,4 +49,4 @@ require_once '../../../views/layouts/admin/header.php'
     </tbody>
 </table>
 
-<?php require_once '../../../views/layouts/admin/footer.php'; ?>
+<?php require_once '../../layouts/admin/footer.php'; ?>

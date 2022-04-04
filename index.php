@@ -1,5 +1,5 @@
 <?php
-require_once 'views/layouts/header.php';
+require_once 'layouts/header.php';
 ?>
 
 <!-- Début home  -->
@@ -14,7 +14,7 @@ require_once 'views/layouts/header.php';
             <div class="content">
                <span>Explorer, Découvrir, Voyager</span>
                <h3>Voyage à travers le monde</h3>
-               <a href="views/destinations.php" class="btn">Découvrir plus</a>
+               <a href="destinations.php" class="btn">Découvrir plus</a>
             </div>
          </div>
 
@@ -22,7 +22,7 @@ require_once 'views/layouts/header.php';
             <div class="content">
                <span>Explorer, Découvrir, Voyager</span>
                <h3>Découvre de nouveaux endroits</h3>
-               <a href="views/destinations.php" class="btn">Découvrir plus</a>
+               <a href="destinations.php" class="btn">Découvrir plus</a>
             </div>
          </div>
 
@@ -30,7 +30,7 @@ require_once 'views/layouts/header.php';
             <div class="content">
                <span>Explorer, Découvrir, Voyager</span>
                <h3>Rend ton voyage magique</h3>
-               <a href="views/destinations.php" class="btn">Découvrir plus</a>
+               <a href="destinations.php" class="btn">Découvrir plus</a>
             </div>
          </div>
          
@@ -104,7 +104,7 @@ require_once 'views/layouts/header.php';
          <div class="content">
             <h3>adventure & tour</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-            <a href="views/destinations.php" class="btn">book now</a>
+            <a href="destinations.php" class="btn">book now</a>
          </div>
       </div>
 
@@ -115,7 +115,7 @@ require_once 'views/layouts/header.php';
          <div class="content">
             <h3>adventure & tour</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-            <a href="views/destinations.php" class="btn">book now</a>
+            <a href="destinations.php" class="btn">book now</a>
          </div>
       </div>
       
@@ -126,13 +126,13 @@ require_once 'views/layouts/header.php';
          <div class="content">
             <h3>adventure & tour</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-            <a href="views/destinations.php" class="btn">book now</a>
+            <a href="destinations.php" class="btn">book now</a>
          </div>
       </div>
 
    </div>
 
-   <div class="load-more"> <a href="views/destinations.php" class="btn">Voir plus</a> </div>
+   <div class="load-more"> <a href="destinations.php" class="btn">Voir plus</a> </div>
 
 </section>
 
@@ -153,7 +153,7 @@ require_once 'views/layouts/header.php';
          <div class="content">
             <h3>adventure & tour</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-            <a href="views/voyages.php" class="btn">book now</a>
+            <a href="voyages.php" class="btn">book now</a>
          </div>
       </div>
 
@@ -164,7 +164,7 @@ require_once 'views/layouts/header.php';
          <div class="content">
             <h3>adventure & tour</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-            <a href="views/voyages.php" class="btn">book now</a>
+            <a href="voyages.php" class="btn">book now</a>
          </div>
       </div>
       
@@ -175,18 +175,18 @@ require_once 'views/layouts/header.php';
          <div class="content">
             <h3>adventure & tour</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-            <a href="views/voyages.php" class="btn">book now</a>
+            <a href="voyages.php" class="btn">book now</a>
          </div>
       </div>
 
    </div>
 
-   <div class="load-more"> <a href="views/voyages.php" class="btn">Voir plus</a> </div>
+   <div class="load-more"> <a href="voyages.php" class="btn">Voir plus</a> </div>
 
 </section>
 
 <!-- Fin voyages -->
 
 <?php
-require_once 'views/layouts/footer.php';
+require_once 'layouts/footer.php';
 ?>

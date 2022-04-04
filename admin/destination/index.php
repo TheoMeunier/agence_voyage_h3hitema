@@ -1,13 +1,13 @@
 <?php
 
-require_once '../../../db.php';
+require_once '../../db.php';
 require_once '../is_connected.php';
 require_once '../is_messages.php';
 
 $sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
 $destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-require_once '../../../views/layouts/admin/header.php';
+require_once '../../layouts/admin/header.php';
 
 if (isset($success_messages)) {
     foreach ($success_messages as $success){
@@ -50,7 +50,7 @@ if (isset($error_messages)) {
                     <td> <?= $destination['created_at']; ?></td>
                     <td>
                         <a href="edit.php?edit=<?= $destination['id']; ?>" class="btn btn-warning">Modifier</a>
-                        <form action= "delete.php?id=<?=$destination['id'] ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
+                        <form action= "delete.php?id=<?= $destination['id'] ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>
@@ -64,4 +64,4 @@ if (isset($error_messages)) {
         </tbody>
     </table>
 
-<?php require_once '../../../views/layouts/admin/footer.php'; ?>
+<?php require_once '../../layouts/admin/footer.php'; ?>

@@ -26,9 +26,9 @@
 
         <nav class="navbar">
             <a href="/index.php">Home</a>
-            <a href="/views/destinations.php">Destination</a>
-            <a href="/views/voyages.php">Voyages</a>
-            <a href="/views/contact.php">Contact</a>
+            <a href="/destinations.php">Destination</a>
+            <a href="/voyages.php">Voyages</a>
+            <a href="/contact.php">Contact</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
