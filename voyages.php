@@ -1,4 +1,7 @@
 <?php
+require_once 'db.php';
+$sql="select name,image,description from travel";
+$travels = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 require_once 'layouts/header.php';
 ?>
 
@@ -13,7 +16,19 @@ require_once 'layouts/header.php';
    <h1 class="heading-title">top destinations</h1>
 
    <div class="box-container">
+       <?php foreach ($travels as $travel):  ?>
+           <div class="box">
+               <div class="image">
+                   <img src="/assets/uploaded_img/<?= $travel['image']; ?>" alt="">
+               </div>
+               <div class="content">
+                   <h3><?= $travel['name']; ?></h3>
+                   <p><?= $travel['description']; ?></p>
+                   <a href="book.php" class="btn">book now</a>
 
+               </div>
+           </div>
+       <?php endforeach; ?>
       <div class="box">
          <div class="image">
             <img src="assets/img/img-1.jpg" alt="">
@@ -137,7 +152,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="assets/img/img-12.jpg" alt="">
+            <img src="assets/uploaded_img/img-12.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>

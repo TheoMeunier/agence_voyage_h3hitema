@@ -152,7 +152,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="assets/img/img-12.jpg" alt="">
+            <img src="assets/uploaded_img/img-12.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
