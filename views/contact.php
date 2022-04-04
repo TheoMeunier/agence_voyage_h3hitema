@@ -1,4 +1,19 @@
 <?php
+if (!empty($_POST["send"])) {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $message = $_POST["message"];
+
+    $toEmail = "VotreAdresse@gmail.com";
+    $mailHeaders = "From: " . $name . "<" . $email . ">\r\n";
+    if (mail($toEmail, $subject, $message, $mailHeaders)) {
+        $mail_msg = "Nous avons reçu avec succès votre message.";
+        $type_mail_msg = "success";
+    } else {
+        $mail_msg = "Erreur lors de l'envoi de l'e-mail.";
+        $type_mail_msg = "error";
+    }
+}
 require_once 'layouts/header.php';
 ?>
 
@@ -22,7 +37,7 @@ require_once 'layouts/header.php';
       </div>
       <div class="inputBox">
          <span>Message :</span>
-         <textarea name="content" class="champ"  style="resize: none;" rows="4" required></textarea>
+         <textarea name="message" class="champ"  style="resize: none;" rows="4" required></textarea>
       </div>
 
        <button type="submit" class="btn" name="submit">Envoyer</button>
