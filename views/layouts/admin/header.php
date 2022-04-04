@@ -22,7 +22,7 @@
 <body>
 <header>
     <div class="logo">
-        <a href="/views/home.php"><h1>JetLag</h1></a>
+        <a href="/index.php"><h1>JetLag</h1></a>
     </div>
     <nav>
         <ul>
