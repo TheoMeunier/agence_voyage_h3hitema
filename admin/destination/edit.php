@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db.php';
+require_once '../../db.php';
 require_once '../is_connected.php';
 require_once '../is_messages.php';
 
@@ -73,7 +73,7 @@ if (isset($successes) && !isset($errors)){
     header('location:edit.php?edit='.$edit_id);
 }
 
-require_once 'layouts/admin/header.php';
+require_once '../../layouts/admin/header.php';
 
 if (isset($success_messages)) {
     foreach ($success_messages as $success){
@@ -114,4 +114,4 @@ if (isset($error_messages)) {
             <button type="submit" name="submit" class="btn btn-success">Modifier</button>
         </form>
 
-<?php require_once 'layouts/admin/footer.php'; ?>
+<?php require_once '../../layouts/admin/footer.php'; ?>
