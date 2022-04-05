@@ -30,10 +30,11 @@ require_once '../../layouts/admin/header.php'
         <?php foreach ($options as $option) : ?>
             <tr>
                 <td> <?= $option['id']; ?></td>
-                <td> <?= $option['nom']; ?></td>
-                <td> <?= $option['Date']; ?></td>
+                <td> <?= $option['name']; ?></td>
+                <td> <?= $option['created_at']; ?></td>
                 <td>
-                    <form action="admin/delete.php?id=<?= $option['id'] ?>" method="post"
+                    <a href="/admin/options/edit.php?id=<?= $option['id'] ?>" class="btn btn-warning">Modifier</a>
+                    <form action="/admin/options/delete.php?id=<?= $option['id'] ?>" method="post"
                             onsubmit="return confirm('Voulez vous vraiment effectuer cette action ?')"
                             style="display: inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
