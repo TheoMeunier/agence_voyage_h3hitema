@@ -4,6 +4,9 @@ require_once '../../db.php';
 require_once '../is_connected.php';
 require_once '../is_messages.php';
 
+$sql="SELECT id,name FROM TAG";
+$tags = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
 if(isset($_POST['submit'])){
 
     $title = $_POST['title'];
@@ -82,9 +85,9 @@ if (isset($error_messages)) {
                 <label class="form-label" for="">Options</label>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($tags as $tag):  ?>
+                        <option value=" <?= $tag['id']; ?>"> <?= $tag['name']; ?> </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3">
