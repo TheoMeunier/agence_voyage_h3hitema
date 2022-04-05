@@ -3,7 +3,7 @@
 require_once '../../db.php';
 require_once '../is_connected.php';
 
-require_once '../../layouts/admin/footer.php';
+require_once '../../layouts/admin/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
@@ -16,7 +16,7 @@ require_once '../../layouts/admin/footer.php';
 <form action="" method="post">
     <div class="mb-2">
         <label for="" class="form-label">Nom</label>
-        <input class="form-control" name="name">
+        <input class="form-control" name="name" value="<?= $name ?>">
     </div>
     <div>
         <button type="submit" class="btn btn-primary">Créer</button>

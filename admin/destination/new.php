@@ -38,10 +38,10 @@ if (isset($successes) && !isset($errors)){
 } else if (isset($successes) && isset($errors)){
     $_SESSION['errors'] = $errors;
     $_SESSION['successes'] = $successes;
-    header('location:new.php'.$edit_id);
+    header('location:new.php');
 } else if (!isset($successes) && isset($errors)){
     $_SESSION['errors'] = $errors;
-    header('location:new.php'.$edit_id);
+    header('location:new.php');
 }
 
 require_once '../../layouts/admin/header.php';
