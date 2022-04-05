@@ -2,7 +2,7 @@
 session_start();
 
 // accès à la base de données
-require_once 'db.php';
+require_once '../../db.php';
 
 //on recupère l'id
 $id = $_GET['id'];

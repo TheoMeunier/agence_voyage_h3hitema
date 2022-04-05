@@ -1,0 +1,102 @@
+.box{
+    margin: 5rem auto;
+    width: 500px;
+    height: auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.box h3 span{
+    color: #5260ad;
+    font-weight: 900;
+}
+
+.form-block h3{
+    text-align: center;
+    font-family: MontSerrat, sans-serif;
+    color: #666;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.form-block .form-group{
+    position: relative;
+    display: flex;
+    margin-top: 2.5rem;
+}
+
+.form-block .form-group label{
+    font-family: MontSerrat, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1.2rem;
+    transition: 0.4s ease-out;
+    cursor: text;
+}
+
+.form-block .form-group input{
+    display: block;
+    width: 100%;
+    padding: .6rem 0;
+    background: none;
+    border-bottom: 3px solid #aaa;
+    color: #666;
+    font-size: 1.2rem;
+    transition: 0.4s ease-out;
+}
+
+.form-block .submit{
+    margin-bottom: 4rem;
+    justify-content: center;
+}
+
+.form-block .form-group .btn{
+    font-family: MontSerrat, sans-serif;
+    display: block;
+    width: auto;
+    padding: 1rem 3.6rem;
+    border: 3px solid #8b97d7;
+    border-radius: 999px;
+    background-image: linear-gradient(to right, transparent 50%, #5260ad 50%, #8b97d7);
+    background-size: 200%;
+    color: #8b97d7;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form-block .form-group .btn:hover{
+    color: #fff;
+    background-position: 100%;
+    border: 3px solid #fff;
+}
+
+.form-block .password-lost a{
+    font-family: MontSerrat, sans-serif;
+    color: #8b97d7;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    padding-bottom: .3rem;
+    border-bottom: 2px solid transparent;
+}
+
+.form-block .password-lost a:hover{
+    border-bottom-color: #8b97d7;
+}
+
+.form-block .form-group:focus-within label,
+.form-block .form-group.animation label{
+    top: 0px;
+    transform: translateY(-100%);
+    color: #8b97d7;
+}
+
+.form-block .form-group:focus-within input,
+.form-block .form-group.animation input{
+    border-bottom-color: #8b97d7;
+}

@@ -1,4 +1,7 @@
 <?php
+require_once 'db.php';
+$sql="SELECT id,name,image,description FROM DESTINATION";
+$destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 require_once 'layouts/header.php';
 ?>
 
@@ -13,7 +16,18 @@ require_once 'layouts/header.php';
    <h1 class="heading-title">top destinations</h1>
 
    <div class="box-container">
-
+       <?php foreach ($destinations as $destination):  ?>
+       <div class="box">
+           <div class="image">
+               <img src="/assets/uploaded_img/<?= $destination['image']; ?>" alt="">
+           </div>
+           <div class="content">
+               <h3><?= $destination['name']; ?></h3>
+               <p><?= $destination['description']; ?></p>
+               <a href="voyages.php?destination=<?= $destination['id'] ?>" class="btn">Voir les voyages</a>
+           </div>
+       </div>
+       <?php endforeach; ?>
       <div class="box">
          <div class="image">
             <img src="assets/img/img-1.jpg" alt="">
@@ -93,7 +107,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="assets/img/img-8.jpg" alt="">
+            <img src="assets/uploaded_img/img-8.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
@@ -137,7 +151,7 @@ require_once 'layouts/header.php';
 
       <div class="box">
          <div class="image">
-            <img src="assets/img/img-12.jpg" alt="">
+            <img src="assets/uploaded_img/img-12.jpg" alt="">
          </div>
          <div class="content">
             <h3>adventure & tour</h3>
