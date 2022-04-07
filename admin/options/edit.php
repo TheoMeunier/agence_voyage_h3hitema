@@ -3,6 +3,23 @@
 require_once '../../db.php';
 require_once '../is_connected.php';
 
+$id = $_GET['id'];
+$tag = $pdo->query("SELECT id,name FROM TAG WHERE id = '$id'")->fetch(PDO::FETCH_ASSOC);
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+
+    if ($name != null){
+        $sql = "UPDATE TAG SET name = '$name' WHERE id = '$id'";
+        $pdo->query($sql);
+        $successes[] = 'Le tag à bien été modifié';
+        header('location:index.php');
+
+    } else {
+        $errors[] = 'Nous avons rencontré un problème lors de la modification';
+    }
+}
+
 require_once '../../layouts/admin/header.php';
 ?>
 
@@ -16,10 +33,10 @@ require_once '../../layouts/admin/header.php';
 <form action="" method="post">
     <div class="mb-2">
         <label for="" class="form-label">Nom</label>
-        <input class="form-control" name="name" value="<?= $name ?>">
+        <input class="form-control" name="name" value="<?= $tag['name'] ?>">
     </div>
     <div>
-        <button type="submit" class="btn btn-primary">Créer</button>
+        <button type="submit" name="submit" class="btn btn-primary">Modifier</button>
     </div>
 </form>
 
