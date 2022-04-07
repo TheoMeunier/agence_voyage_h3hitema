@@ -1,5 +1,5 @@
 .message{
-    width: 80%;
+    width: 100%;
     position: sticky;
     top: 1rem; left: 0;
     z-index: 10000;
