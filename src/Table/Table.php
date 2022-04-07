@@ -1,14 +1,15 @@
 <?php
 require_once 'db.php';
+
 class Table
 {
     public function findAll($data)
     {
-        //TODO:: Faire le fonction
+        //TODO:: Faire le function
     }
 
     public function find(int $id)
     {
-        //TODO:: Faire la fonction
+        //TODO:: Faire la function
     }
 }

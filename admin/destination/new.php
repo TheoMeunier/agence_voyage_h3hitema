@@ -3,6 +3,7 @@
 require_once '../../db.php';
 require_once '../is_connected.php';
 require_once '../is_messages.php';
+require_once '../../src/Services/UploadFile.php';
 
 $sql="SELECT id,name FROM TAG ORDER BY name ASC";
 $tags_list = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -24,6 +25,9 @@ if(isset($_POST['submit'])){
                 foreach ($tags as $tag_id){
                     $tags_id = $tags_id . $tag_id . ' ';
                 }
+
+                processFileForm();
+
                 $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at,tags) VALUES('$title', '$img', '$description', NOW(), '$tags_id');");
                 if($insert){
                     $successes[] = 'La destination a bien été ajoutée';

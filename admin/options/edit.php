@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
             $sql = "UPDATE TAG SET name = '$name' WHERE id = '$id'";
             $pdo->query($sql);
             $successes[] = 'Le tag à bien été modifié';
-        } else{
+        } else {
             $errors[] = 'Ce tag existe déjà';
         }
 
