@@ -12,6 +12,7 @@ if (isset($id)){
     $query = $pdo->prepare("DELETE FROM TAG WHERE id = :id_tag");
     $query->execute(['id_tag'=>$id]);
 
-    $success = "L'utilisateur a bien été supprimé";
+    $successes[] = "Le tag a bien été supprimé";
+    $_SESSION['successes'] = $successes;
     header('location: index.php');
 }

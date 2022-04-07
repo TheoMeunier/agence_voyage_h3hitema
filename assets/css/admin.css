@@ -94,3 +94,8 @@ svg{
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 1rem;
 }
+
+.checkbox{
+    max-height: 15rem;
+    overflow-y: scroll;
+}

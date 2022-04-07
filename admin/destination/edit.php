@@ -6,10 +6,17 @@ require_once '../is_messages.php';
 
 if (isset($_GET['edit'])) {
     $edit_id = $_GET['edit'];
-    $edit_query = $pdo->query("SELECT id,name,image,description FROM DESTINATION WHERE id = '$edit_id'")->fetch(PDO::FETCH_ASSOC);
+    $edit_query = $pdo->query("SELECT id,name,image,description,tags FROM DESTINATION WHERE id = '$edit_id'")->fetch(PDO::FETCH_ASSOC);
 } else {
     header('location:index.php');
 };
+
+$sql="SELECT id,name FROM TAG ORDER BY name ASC";
+$tags_list = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+$destination_tags = explode(" ", $edit_query['tags']);
+array_shift($destination_tags);
+array_pop($destination_tags);
 
 if (isset($_POST['submit'])) {
 
@@ -17,6 +24,7 @@ if (isset($_POST['submit'])) {
     $old_description = $edit_query['description'];
     $old_image = $edit_query['image'];
     $new_title = $_POST['title'];
+    $new_tags = $_POST['tags'];
     $new_description = $_POST['description'];
     $new_image = $_POST['image'];
 
@@ -34,6 +42,24 @@ if (isset($_POST['submit'])) {
                 $errors[] = 'Le changement de nom de la destination a échoué !';
             }
         }
+    }
+    if (isset($new_tags) && count($new_tags) > 0){
+        if ($new_tags != $destination_tags){
+            $new_tags_id = " ";
+            foreach ($new_tags as $new_tag){
+                $new_tags_id = $new_tags_id . $new_tag . ' ';
+            }
+
+            $insert = $pdo->query("UPDATE DESTINATION SET tags = '$new_tags_id' WHERE id = '$edit_id'");
+
+            if ($insert) {
+                $successes[] = 'Les tags ont bien été modifié !';
+            } else {
+                $errors[] = 'La modification des tags a échoué !';
+            }
+        }
+    } else{
+        $errors[] = 'Veuillez sélectionner au moins 1 tag pour cette destination';
     }
     if ($old_description != $new_description) {
         if (strlen($new_description) < 500) {
@@ -102,6 +128,16 @@ if (isset($error_messages)) {
             <div class="mb-3">
                 <label class="form-label" for="nom">Titre</label>
                 <input type="text" class="form-control" name="title" value="<?=$edit_query['name'];?>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Options</label>
+                <div class="checkbox">
+                    <?php foreach ($tags_list as $tag_list): ?>
+                        <div class="input-group-text" style="margin-bottom: .3rem;">
+                            <label><input <?= in_array($tag_list['id'], $destination_tags) ? 'checked' : ''; ?> type="checkbox" value="<?= $tag_list['id']; ?>" name="tags[]"> <?= $tag_list['name']; ?> </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="desc">Description</label>

@@ -2,10 +2,10 @@
 
 require_once '../../db.php';
 require_once '../is_connected.php';
+require_once '../is_messages.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    var_dump($name);
 
     $vname = $pdo->query("SELECT name FROM TAG WHERE name = '$name'");
 
@@ -14,11 +14,15 @@ if (isset($_POST['submit'])) {
         $insert = $pdo->query($sql);
 
         if ($insert) {
-            $successes[] = "L'option à bien été crée";
-            header('location:index.php');
+            $successes[] = "L'option à bien été créé";
+        } else{
+            $errors[] = "La création du tag a échoué";
         }
+    } else{
+        $errors[] = "Ce tag existe déjà";
     }
 }
+
 if (isset($successes) && !isset($errors)){
     $_SESSION['successes'] = $successes;
     header('location:index.php');

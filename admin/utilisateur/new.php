@@ -28,7 +28,6 @@ if(isset($_POST['submit'])){
     
                     if($insert){
                         $successes[] = 'Le compte a bien été créé';
-                        header('location:index.php');
                     }else{
                         $errors[] = "La création du compte a échoué";
                     };
