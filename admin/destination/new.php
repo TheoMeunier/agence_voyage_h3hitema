@@ -12,7 +12,9 @@ if(isset($_POST['submit'])){
     $title = $_POST['title'];
     $tags = $_POST['tags'];
     $description = $_POST['description'];
-    $img = $_POST['image'];
+    $image = $_FILES['image']['name'];
+    $image_tmp_name = $_FILES['image']['tmp_name'];
+    $image_folder = '../../assets/uploaded_img/'.$image;
 
     $vtitle = $pdo->query("SELECT name FROM `destination` WHERE name = '$title'");
 
@@ -24,8 +26,9 @@ if(isset($_POST['submit'])){
                 foreach ($tags as $tag_id){
                     $tags_id = $tags_id . $tag_id . ' ';
                 }
-                $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at,tags) VALUES('$title', '$img', '$description', NOW(), '$tags_id');");
+                $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at,tags) VALUES('$title', '$image', '$description', NOW(), '$tags_id');");
                 if($insert){
+                    move_uploaded_file($image_tmp_name, $image_folder);
                     $successes[] = 'La destination a bien été ajoutée';
                 }else{
                     $errors[] = 'La destination n\'a pas pu être ajouté';
@@ -76,7 +79,7 @@ if (isset($error_messages)) {
 
         <h2 class="text-center">Ajouter une destination</h2>
 
-        <form action="" method="post" class="mt-3">
+        <form action="" method="post" enctype="multipart/form-data" class="mt-3">
 
             <div class="mb-3">
                 <label for="title" class="from-label">Titre</label>

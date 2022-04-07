@@ -26,7 +26,7 @@ if (isset($_POST['submit'])){
 }
 ?>
     
-        <form action="" method="post" class="mt-3">
+        <form action="" method="POST" class="mt-3">
 
             <input type="text" name="tag">
             <div>

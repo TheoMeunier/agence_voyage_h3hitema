@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     $new_title = $_POST['title'];
     $new_tags = $_POST['tags'];
     $new_description = $_POST['description'];
-    $new_image = $_POST['image'];
+    $new_image = $_FILES['image']['name'];
 
     if ($old_title != $new_title) {
         $vtitle = $pdo->query("SELECT id FROM DESTINATION WHERE name = '$new_title'");
@@ -77,8 +77,10 @@ if (isset($_POST['submit'])) {
     if (strlen($new_image) > 0) {
         if ($old_image != $new_image) {
             $insert = $pdo->query("UPDATE DESTINATION SET image = '$new_image' WHERE id = '$edit_id'");
-    
+            $image_tmp_name = $_FILES['image']['tmp_name'];
+            $image_folder = '../../assets/uploaded_img/' . $new_image;
             if ($insert) {
+                move_uploaded_file($image_tmp_name, $image_folder);
                 $successes[] = 'L\'image a bien été modifié !';
             } else {
                 $errors[] = 'La modification de l\'image a échoué !';
@@ -124,7 +126,7 @@ if (isset($error_messages)) {
     <h2 class="text-center">Modifier la destination</h2>
 
     <!-- on liste tous les utilisateurs -->
-        <form action="" method="post" class="mt-3">
+        <form action="" method="post" enctype="multipart/form-data" class="mt-3">
             <div class="mb-3">
                 <label class="form-label" for="nom">Titre</label>
                 <input type="text" class="form-control" name="title" value="<?=$edit_query['name'];?>">
