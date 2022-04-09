@@ -1,11 +1,8 @@
 <?php
 
-require_once '../../db.php';
-require_once '../is_connected.php';
-require_once '../is_messages.php';
+require_once '../../src/Table/Table.php';
 
-$sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
-$destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$destinations = findAll('DESTINATION');
 
 require_once '../../layouts/admin/header.php';
 

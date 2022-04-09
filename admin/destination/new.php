@@ -12,9 +12,6 @@ if(isset($_POST['submit'])){
     $title = $_POST['title'];
     $tags = $_POST['tags'];
     $description = $_POST['description'];
-    $image = $_FILES['image']['name'];
-    $image_tmp_name = $_FILES['image']['tmp_name'];
-    $image_folder = '../../assets/uploaded_img/'.$image;
 
     $vtitle = $pdo->query("SELECT name FROM `destination` WHERE name = '$title'");
 

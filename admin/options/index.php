@@ -1,11 +1,8 @@
 <?php
 
-require_once '../../db.php';
-require_once '../is_connected.php';
-require_once '../is_messages.php';
+require_once '../../src/Table/Table.php';
 
-$sql = "SELECT * FROM TAG ORDER BY id ASC";
-$options = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$options = findAll('TAG');
 
 require_once '../../layouts/admin/header.php';
 
@@ -40,7 +37,7 @@ if (isset($error_messages)) {
     </thead>
 
     <tbody>
-    <?php if (count($options) > 0) { ?>
+    <?php  if (count($options) > 0) { ?>
         <!-- on affiche tout les utilisateus-->
         <?php foreach ($options as $option) : ?>
             <tr>

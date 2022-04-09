@@ -1,10 +1,10 @@
 <?php
 
-function uploadFile(string $tmpFile, string $file)
+function uploadFile(string $tmpFile, string $path)
 {
     move_uploaded_file(
         $tmpFile,
-        __DIR__ . "../../assets/uploaded_img/$file"
+        $path
     );
 }
 
@@ -15,8 +15,8 @@ function removeFile(string $filename)
 
 function processFileForm()
 {
+    $image = $_FILES['image']['name'];
     $tmp_name = $_FILES['image']['tmp_name'];
-    $name = basename( $_FILES['image']['name']);
-    var_dump($tmp_name, $name).die();
-    uploadFile($tmp_name, (array)$name);
+    $path = '../../assets/upload_img' . $image;
+    uploadFile($tmp_name, $path);
 }
