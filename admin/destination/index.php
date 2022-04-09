@@ -3,6 +3,18 @@
 require_once '../../src/Table/Table.php';
 
 $destinations = findAll('DESTINATION');
+$sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
+
+if (isset($_POST['search-submit'])){
+
+    $search = $_POST['search'];
+
+    if (!empty($search)){
+        $sql = "SELECT * FROM DESTINATION WHERE name LIKE '%$search%' ORDER BY name ASC";
+    }
+}
+
+$destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 require_once '../../layouts/admin/header.php';
 
@@ -25,6 +37,11 @@ if (isset($error_messages)) {
         <h1>Gestion des destinations</h1>
         <a href="new.php" class="btn btn-primary">Ajouter une destination</a>
     </div>
+    <form action="" class="searchbar" method="post">
+        <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input type="text" name="search" class="form-control" id="search" placeholder="Rechercher une destination">
+        <button name="search-submit" class="btn btn-success">Rechercher</button>
+    </form>
 
     <!-- on liste tous les utilisateurs -->
     <table class="table">
@@ -32,6 +49,7 @@ if (isset($error_messages)) {
             <tr class="table-header">
                 <th>ID</th>
                 <th>TITRE</th>
+                <th>TAGS</th>
                 <th>CRÉÉ LE</th>
                 <th>ACTION</th>
             </tr>
@@ -44,6 +62,19 @@ if (isset($error_messages)) {
                 <tr>
                     <td> <?= $destination['id']; ?></td>
                     <td> <?= $destination['name']; ?></td>
+                    <td>
+                        <?php
+                            $tags_list = explode(" ", $destination['tags']);
+                            array_shift($tags_list);
+                            array_pop($tags_list);
+                            $tags_name = [];
+                            foreach ($tags_list as $tag_id){
+                                $tag_name = $pdo->query("SELECT name FROM TAG WHERE id = '$tag_id'")->fetch(PDO::FETCH_ASSOC);
+                                array_push($tags_name, $tag_name['name']);
+                            }
+                            echo implode(' | ', $tags_name);
+                        ?>
+                    </td>
                     <td> <?= $destination['created_at']; ?></td>
                     <td>
                         <a href="edit.php?edit=<?= $destination['id']; ?>" class="btn btn-warning">Modifier</a>

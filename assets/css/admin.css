@@ -99,3 +99,34 @@ svg{
     max-height: 15rem;
     overflow-y: scroll;
 }
+
+/* OVERFLOW TABLE */
+
+.table{
+    width: 100%;
+    overflow-x: scroll;
+}
+
+/* BARRE DE RECHERCHE */
+
+.searchbar{
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    position: relative;
+    left: -1.3rem;
+    padding-bottom: 1rem;
+}
+
+.searchbar i{
+    width: 1.3rem;
+    position: relative;
+    left: 2rem;
+    z-index: 1000;
+}
+
+.searchbar input{
+    width: 100%;
+    padding-left: 2.2rem;
+    margin-right: .5rem;
+}

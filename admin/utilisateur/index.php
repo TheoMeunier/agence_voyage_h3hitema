@@ -5,6 +5,16 @@ require_once '../is_connected.php';
 require_once '../is_messages.php';
 
 $sql = "SELECT * FROM user ORDER BY id ASC";
+
+if (isset($_POST['search-submit'])){
+
+    $search = $_POST['search'];
+
+    if (!empty($search)){
+        $sql = "SELECT * FROM USER WHERE name LIKE '%$search%' ORDER BY name ASC";
+    }
+}
+
 $users = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 require_once '../../layouts/admin/header.php';
@@ -28,6 +38,11 @@ if (isset($error_messages)) {
         <h1>Gestion des comptes</h1>
         <a href="new.php" class="btn btn-primary">Créer un compte</a>
     </div>
+    <form action="" class="searchbar" method="post">
+        <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input type="text" name="search" class="form-control" id="search" placeholder="Rechercher un utilisateur">
+        <button name="search-submit" class="btn btn-success">Rechercher</button>
+    </form>
 
     <!-- on liste tous les utilisateurs -->
         <table class="table">

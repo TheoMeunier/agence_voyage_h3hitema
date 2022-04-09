@@ -25,6 +25,11 @@ if (isset($error_messages)) {
     <h1>Gestion des options</h1>
     <a href="new.php" class="btn btn-primary">Créer une option</a>
 </div>
+<form action="" class="searchbar" method="post">
+    <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+    <input type="text" name="search" class="form-control" id="search" placeholder="Rechercher un tag">
+    <button name="search-submit" class="btn btn-success">Rechercher</button>
+</form>
 <!-- on liste tout les utilisateurs -->
 <table class="table">
     <thead>
@@ -37,7 +42,7 @@ if (isset($error_messages)) {
     </thead>
 
     <tbody>
-    <?php  if (count($options) > 0) { ?>
+    <?php if (count($options) > 0) { ?>
         <!-- on affiche tout les utilisateus-->
         <?php foreach ($options as $option) : ?>
             <tr>

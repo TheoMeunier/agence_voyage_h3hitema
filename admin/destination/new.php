@@ -18,11 +18,7 @@ if(isset($_POST['submit'])){
     if($vtitle->rowCount() <= 0){
         if(strlen($description) < 256){
             if (isset($tags) && count($tags) > 0){
-
-                $tags_id = " ";
-                foreach ($tags as $tag_id){
-                    $tags_id = $tags_id . $tag_id . ' ';
-                }
+                $tags_id = ' ' . implode(' ', $tags) . ' ';
                 $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at,tags) VALUES('$title', '$image', '$description', NOW(), '$tags_id');");
                 if($insert){
                     move_uploaded_file($image_tmp_name, $image_folder);
