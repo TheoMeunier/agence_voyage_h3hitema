@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../src/Table/Table.php';
+require_once '../is_messages.php';
 
 $options = findAll('TAG');
 

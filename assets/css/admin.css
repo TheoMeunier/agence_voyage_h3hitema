@@ -107,6 +107,12 @@ svg{
     overflow-x: scroll;
 }
 
+/* Pointer sur les select */
+
+.input-group-text input, .input-group-text label{
+    cursor: pointer;
+}
+
 /* BARRE DE RECHERCHE */
 
 .searchbar{

@@ -1,5 +1,5 @@
 <?php
-
+require_once '../../db.php';
 require_once '../../src/Table/Table.php';
 
 $destinations = findAll('DESTINATION');
@@ -43,7 +43,7 @@ if (isset($error_messages)) {
         <button name="search-submit" class="btn btn-success">Rechercher</button>
     </form>
 
-    <!-- on liste tous les utilisateurs -->
+    <!-- on liste toutes les destinations -->
     <table class="table">
         <thead>
             <tr class="table-header">
@@ -57,7 +57,7 @@ if (isset($error_messages)) {
 
         <tbody>
         <?php if (count($destinations) > 0) { ?>
-            <!-- on affiche tout les utilisateus-->
+            <!-- on affiche toutes les destinations-->
             <?php foreach ($destinations as $destination) : ?>
                 <tr>
                     <td> <?= $destination['id']; ?></td>
