@@ -14,7 +14,7 @@ if (isSubmit()) {
             ];
     
             create('TAG', $data);
-            setMessages(); exit;
+            Redirect(); exit;
         } else{
             alert('error', "Ce tag existe déjà");
         }

@@ -27,7 +27,7 @@ if (isSubmit()) {
         alert('error', 'Veuillez donner un nom valide au tag');
     }
 
-    setMessages(); exit;
+    Redirect(); exit;
 }
 
 require_once '../../layouts/admin/header.php';

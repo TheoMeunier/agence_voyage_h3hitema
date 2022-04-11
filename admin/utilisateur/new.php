@@ -9,7 +9,7 @@ if(isSubmit()){
     }
 
     if (isNotBlank($name) && isNotBlank($email) && isNotBlank($password) && isNotBlank($cpassword)){
-        if (validName($name) && validEmail($email) && validPassword($password, $cpassword)){
+        if (validName('USER', 'name', $name) && validEmail('USER', 'email', $email) && validPassword($password, $cpassword)){
             $data = [
                 'name' => $name,
                 'email' => $email,
@@ -23,7 +23,7 @@ if(isSubmit()){
         alert('error', 'Veuillez remplir tous les champs svp');
     }
 
-    setMessages(); exit;
+    Redirect(); exit;
 }
 
 require_once '../../layouts/admin/header.php';

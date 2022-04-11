@@ -9,9 +9,11 @@ if(isset($_GET['id'])){
 };
 
 if(isSubmit()){
+    // Boucle pour obtenir les anciennes données
     foreach ($edit_query as $field => $value){
         ${'old_' . $field} = $value;
     }
+    // Boucle pour obtenir les nouvelles données
     foreach (getValues() as $field => $value){
         ${$field} = $value;
     }
@@ -20,7 +22,7 @@ if(isSubmit()){
     checkEmail($new_email, $old_email, $edit_id);
     checkPassword($new_password, $cpassword, $last_password, $old_password, $edit_id);
 
-    setMessages(); exit;
+    Redirect(); exit;
 }
 
 require_once '../../layouts/admin/header.php';

@@ -15,7 +15,7 @@ function alert(string $type, string $message)
     }
 }
 
-function setMessages()
+function Redirect()
 {
     if (isset($_GET['id'])){
         if (isset($_SESSION['successes']) && !isset($_SESSION['errors'])){
