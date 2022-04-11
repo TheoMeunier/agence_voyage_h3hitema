@@ -44,7 +44,7 @@ displayMessages()
                         <td>
                             <a href="edit.php?id=<?= $user['id']; ?>" class="btn btn-warning">Modifier</a>
                             <form action= "delete.php?id=<?=$user['id'] ?>" method="post"
-                                  onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
+                                  onsubmit="return confirm('Voulez-vous vraiment supprimer cette utilisateur ?')" style="display: inline">
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
                         </td>

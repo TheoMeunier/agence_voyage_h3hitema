@@ -31,7 +31,7 @@ body{
 }
 
 header{
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 0; left: 0;
     background-color: var(--white);

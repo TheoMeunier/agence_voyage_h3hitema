@@ -13,9 +13,7 @@ if (isSubmit()) {
     $name = $_POST['name'];
 
     if (isNotBlank($name)){
-        $vname = findWhere('TAG', 'name', $name);
-
-        if ($vname->rowCount() <= 0) {
+        if (Exist('TAG', 'name', $name)) {
             $data = [
                 'name' => $name,
                 'id' => $id

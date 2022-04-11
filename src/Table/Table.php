@@ -26,7 +26,7 @@ function findAll(string $table)
 function find(string $table, int $id)
 {
     include '../../db.php';
-    $query = $pdo->prepare("SELECT id,name FROM $table WHERE id = :id ");
+    $query = $pdo->prepare("SELECT * FROM $table WHERE id = :id ");
     $query->execute(['id' => $id]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
@@ -83,7 +83,12 @@ function delete(string $table, int $id)
     header('location:index.php');
 }
 
-function Exist()
+function Exist(string $table, string $where, string $value)
 {
-
+    $exist = false;
+    $data = findWhere($table, $where, $value)->rowCount();
+    if ($data > 0){
+        $exist = true;
+    }
+    return $exist;
 }
