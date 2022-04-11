@@ -1,25 +1,12 @@
 <?php
 
-require_once '../../src/Table/Table.php';
-require_once '../is_messages.php';
+require_once '../../src/Controller/OptionsController.php';
 
 $options = findAll('TAG');
 
 require_once '../../layouts/admin/header.php';
 
-if (isset($success_messages)) {
-    foreach ($success_messages as $success){
-        echo '<p class="message alert-success"><span style="display: flex; align-items: center;"><i style="color: green; font-size: 1.5rem; padding-right: 1rem;" class="fa-regular fa-circle-check"></i>'.$success.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
-    }
-    unset($success_messages);
-}
-if (isset($error_messages)) {
-    foreach ($error_messages as $error){
-        echo '<p class="message alert-danger"><span style="display: flex; align-items: center;"><i style="color: red; font-size: 1.5rem; padding-right: 1rem;" class="fa-solid fa-xmark"></i>'.$error.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
-    }
-    unset($error_messages);
-}
-
+displayMessages();
 ?>
 
 <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
@@ -31,7 +18,7 @@ if (isset($error_messages)) {
     <input type="text" name="search" class="form-control" id="search" placeholder="Rechercher un tag">
     <button name="search-submit" class="btn btn-success">Rechercher</button>
 </form>
-<!-- on liste tout les utilisateurs -->
+
 <table class="table">
     <thead>
     <tr>
@@ -44,7 +31,7 @@ if (isset($error_messages)) {
 
     <tbody>
     <?php if (count($options) > 0) { ?>
-        <!-- on affiche tout les utilisateus-->
+        <!-- on affiche tous les tags -->
         <?php foreach ($options as $option) : ?>
             <tr>
                 <td> <?= $option['id']; ?></td>

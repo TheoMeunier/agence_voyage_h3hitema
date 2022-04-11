@@ -1,20 +1,10 @@
 <?php
-require_once '../../db.php';
+
+require_once '../../src/Services/isConnected.php';
 require_once '../../src/Table/Table.php';
+require_once '../is_messages.php';
 
 $destinations = findAll('DESTINATION');
-$sql = "SELECT * FROM DESTINATION ORDER BY id ASC";
-
-if (isset($_POST['search-submit'])){
-
-    $search = $_POST['search'];
-
-    if (!empty($search)){
-        $sql = "SELECT * FROM DESTINATION WHERE name LIKE '%$search%' ORDER BY name ASC";
-    }
-}
-
-$destinations = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 require_once '../../layouts/admin/header.php';
 
@@ -69,7 +59,7 @@ if (isset($error_messages)) {
                             array_pop($tags_list);
                             $tags_name = [];
                             foreach ($tags_list as $tag_id){
-                                $tag_name = $pdo->query("SELECT name FROM TAG WHERE id = '$tag_id'")->fetch(PDO::FETCH_ASSOC);
+                                $tag_name = find('TAG', $tag_id);
                                 array_push($tags_name, $tag_name['name']);
                             }
                             echo implode(' | ', $tags_name);
@@ -77,7 +67,7 @@ if (isset($error_messages)) {
                     </td>
                     <td> <?= $destination['created_at']; ?></td>
                     <td>
-                        <a href="edit.php?edit=<?= $destination['id']; ?>" class="btn btn-warning">Modifier</a>
+                        <a href="edit.php?id=<?= $destination['id']; ?>" class="btn btn-warning">Modifier</a>
                         <form action= "delete.php?id=<?= $destination['id'] ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                         </form>

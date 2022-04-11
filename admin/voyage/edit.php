@@ -4,8 +4,8 @@ require_once '../../db.php';
 require_once '../is_connected.php';
 require_once '../is_messages.php';
 
-if (isset($_GET['edit'])) {
-    $edit_id = $_GET['edit'];
+if (isset($_GET['id'])) {
+    $edit_id = $_GET['id'];
     $edit_query = $pdo->query("SELECT id,name,image,description,tags,destination_id FROM TRAVEL WHERE id = '$edit_id'")->fetch(PDO::FETCH_ASSOC);
 } else {
     header('location:index.php');

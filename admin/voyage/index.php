@@ -1,21 +1,10 @@
 <?php
-require_once '../../db.php';
+
+require_once '../../src/Services/isConnected.php';
 require_once '../../src/Table/Table.php';
 require_once '../is_messages.php';
 
 $travels = findAll('TRAVEL');
-$sql = "SELECT * FROM TRAVEL ORDER BY id ASC";
-
-if (isset($_POST['search-submit'])){
-
-    $search = $_POST['search'];
-
-    if (!empty($search)){
-        $sql = "SELECT * FROM TRAVEL WHERE name LIKE '%$search%' ORDER BY name ASC";
-    }
-}
-
-$travels = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 require_once '../../layouts/admin/header.php';
 
@@ -65,8 +54,7 @@ if (isset($error_messages)) {
                     <td> <?= $travel['id']; ?></td>
                     <td>
                         <?php
-                            $destination_id = $travel['destination_id'];
-                            $destination_name = $pdo->query("SELECT name FROM DESTINATION WHERE id = '$destination_id'")->fetch(PDO::FETCH_ASSOC);
+                            $destination_name = find('DESTINATION', $travel['destination_id']);
                             echo $destination_name['name'];
                         ?>
                     </td>
@@ -78,7 +66,7 @@ if (isset($error_messages)) {
                             array_pop($tags_list);
                             $tags_name = [];
                             foreach ($tags_list as $tag_id){
-                                $tag_name = $pdo->query("SELECT name FROM TAG WHERE id = '$tag_id'")->fetch(PDO::FETCH_ASSOC);
+                                $tag_name = find('TAG', $tag_id);
                                 array_push($tags_name, $tag_name['name']);
                             }
                             echo implode(' | ', $tags_name);
@@ -86,7 +74,7 @@ if (isset($error_messages)) {
                     </td>
                     <td> <?= $travel['created_at']; ?></td>
                     <td>
-                        <a href="edit.php?edit=<?= $travel['id']; ?>" class="btn btn-warning">Modifier</a>
+                        <a href="edit.php?id=<?= $travel['id']; ?>" class="btn btn-warning">Modifier</a>
                         <form action= "delete.php?id=<?= $travel['id'] ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce voyage ?')" style="display: inline">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                         </form>

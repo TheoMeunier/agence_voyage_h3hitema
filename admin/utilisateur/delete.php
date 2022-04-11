@@ -1,18 +1,9 @@
 <?php
-session_start();
 
-// accès à la base de données
-require_once '../../db.php';
+require_once '../../src/Controller/UserController.php';
 
-//on recupère l'id
-$id = $_GET['id'];
-
-//si l'id est alors on crée la request
-if (isset($id)){
-    $query = $pdo->prepare("DELETE FROM user WHERE id = :id_utilisateur");
-    $query->execute(['id_utilisateur'=>$id]);
-
-    $successes[] = "L'utilisateur a bien été supprimé";
-    $_SESSION['successes'] = $successes;
-    header('location: index.php');
+if (isset($_GET['id'])){
+    delete('USER', $_GET['id']);
+} else{
+    header('location:index.php');
 }

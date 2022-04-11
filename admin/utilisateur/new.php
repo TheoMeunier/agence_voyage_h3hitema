@@ -1,18 +1,16 @@
 <?php
 
-require_once '../../db.php';
-require_once '../is_connected.php';
-require_once '../is_messages.php';
+require_once '../../src/Controller/UserController.php';
 
-if(isset($_POST['submit'])){
+if(isSubmit()){
 
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = hash('sha256', $_POST['password']);
     $cpassword = hash('sha256', $_POST['cpassword']);
 
-    $vname = $pdo->query("SELECT id FROM `user` WHERE name = '$name'");
-    $vemail = $pdo->query("SELECT id FROM `user` WHERE email = '$email'");
+    $vname = findWhere('USER', 'name', $name);
+    $vemail = findWhere('USER', 'email', $email);
 
     if (strlen($name) > 0 && strlen($email) > 0 && $password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'){
         if($vname->rowCount() > 0){

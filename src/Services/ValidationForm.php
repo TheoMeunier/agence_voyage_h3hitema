@@ -13,14 +13,14 @@ function isNotBlank(string|array|null $fiels): bool
     return !empty($fiels);
 }
 
-function min(int $value, string|null $str)
+function mini(int $value, string|null $str)
 {
     if ($str <= $value) {
         return strlen($value);
     }
 }
 
-function max(int $value, string|null $str)
+function maxi(int $value, string|null $str)
 {
     if ($str >= $value) {
         return strlen($value);

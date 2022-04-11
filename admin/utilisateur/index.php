@@ -1,37 +1,12 @@
 <?php
 
-require_once '../../db.php';
-require_once '../is_connected.php';
-require_once '../is_messages.php';
+require_once '../../src/Controller/UserController.php';
 
-$sql = "SELECT * FROM user ORDER BY id ASC";
-
-if (isset($_POST['search-submit'])){
-
-    $search = $_POST['search'];
-
-    if (!empty($search)){
-        $sql = "SELECT * FROM USER WHERE name LIKE '%$search%' ORDER BY name ASC";
-    }
-}
-
-$users = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$users = findAll('USER');
 
 require_once '../../layouts/admin/header.php';
 
-if (isset($success_messages)) {
-    foreach ($success_messages as $success){
-        echo '<p class="message alert-success"><span style="display: flex; align-items: center;"><i style="color: green; font-size: 1.5rem; padding-right: 1rem;" class="fa-regular fa-circle-check"></i>'.$success.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
-    }
-    unset($success_messages);
-}
-if (isset($error_messages)) {
-    foreach ($error_messages as $error){
-        echo '<p class="message alert-danger"><span style="display: flex; align-items: center;"><i style="color: red; font-size: 1.5rem; padding-right: 1rem;" class="fa-solid fa-xmark"></i>'.$error.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
-    }
-    unset($error_messages);
-}
-
+displayMessages()
 ?>
 
     <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">
@@ -44,7 +19,6 @@ if (isset($error_messages)) {
         <button name="search-submit" class="btn btn-success">Rechercher</button>
     </form>
 
-    <!-- on liste tous les utilisateurs -->
         <table class="table">
             <thead>
                 <tr class="table-header">
@@ -68,7 +42,7 @@ if (isset($error_messages)) {
                         <td> <?= $user['is_admin'] === 1 ? 'admin' : ''; ?></td>
                         <td> <?= $user['created_at']; ?></td>
                         <td>
-                            <a href="edit.php?edit=<?= $user['id']; ?>" class="btn btn-warning">Modifier</a>
+                            <a href="edit.php?id=<?= $user['id']; ?>" class="btn btn-warning">Modifier</a>
                             <form action= "delete.php?id=<?=$user['id'] ?>" method="post"
                                   onsubmit="return confirm('Voulez-vous vraiment supprimer cette destination ?')" style="display: inline">
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
