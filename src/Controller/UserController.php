@@ -10,11 +10,6 @@ function isValid()
 
 }
 
-function getValues():array
-{
-    return $_POST;
-}
-
 function validName(string $table, string $where, string $name):bool{
     $IsValid = false;
     if (!Exist($table, $where, $name)){

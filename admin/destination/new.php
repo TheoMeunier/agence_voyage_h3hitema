@@ -1,71 +1,48 @@
 <?php
 
-require_once '../../db.php';
-require_once '../is_connected.php';
-require_once '../is_messages.php';
+require_once '../../src/Controller/VoyagesController.php';
 
-$sql="SELECT id,name FROM TAG ORDER BY name ASC";
-$tags_list = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$tags_list = findAll('TAG', 'name');
 
-if(isset($_POST['submit'])){
-
-    $title = $_POST['title'];
-    $tags = $_POST['tags'];
-    $description = $_POST['description'];
+if(isSubmit()){
+    // Boucle qui récupère les données et crée les variables
+    foreach (getValues() as $field => $value){
+        ${$field} = $value;
+    }
     $image = $_FILES['image']['name'];
-    $image_tmp_name = $_FILES['image']['tmp_name'];
-    $image_folder = '../../assets/uploaded_img/' . $image;
 
     $vtitle = $pdo->query("SELECT name FROM `destination` WHERE name = '$title'");
-
-    if($vtitle->rowCount() <= 0){
-        if(strlen($description) < 256){
-            if (isset($tags) && count($tags) > 0){
-                $tags_id = ' ' . implode(' ', $tags) . ' ';
-                $insert = $pdo->query("INSERT INTO DESTINATION(name,image,description,created_at,tags) VALUES('$title', '$image', '$description', NOW(), '$tags_id');");
-                if($insert){
-                    move_uploaded_file($image_tmp_name, $image_folder);
-                    $successes[] = 'La destination a bien été ajoutée';
-                }else{
-                    $errors[] = 'La destination n\'a pas pu être ajouté';
+    if (isNotBlank($description)){
+        if(!Exist('DESTINATION', 'name', $title)){
+            if(validDescription($description)){
+                if (isNotBlank($tags) && count($tags) > 0){
+                    $tags_id = ' ' . implode(' ', $tags) . ' ';
+                    $data = [
+                        'name' => $title,
+                        'image' => $image,
+                        'description' => $description,
+                        'created_at' => date('y-m-d h:i:s'),
+                        'tags' => $tags_id
+                    ];
+                    create('DESTINATION', $data);
+                    processFileForm();
+                } else{
+                    alert('error', 'Veuillez attribuer au moins un tag à la destination');
                 }
-            } else{
-                $errors[] = 'Veuillez attribuer au moins un tag à la destination';
             }
         }else{
-            $errors[] = 'La description est trop longue (255 caractères max)';
+            alert('error', 'Cette destination existe déjà');
         }
-    }else{
-        $errors[] = 'Cette destination existe déjà';
+    } else{
+        alert('error', 'Veuillez remplir tous les champs');
     }
+    
+    Redirect(); exit;
 };
-
-if (isset($successes) && !isset($errors)){
-    $_SESSION['successes'] = $successes;
-    header('location:index.php');
-} else if (isset($successes) && isset($errors)){
-    $_SESSION['errors'] = $errors;
-    $_SESSION['successes'] = $successes;
-    header('location:new.php');
-} else if (!isset($successes) && isset($errors)){
-    $_SESSION['errors'] = $errors;
-    header('location:new.php');
-}
 
 require_once '../../layouts/admin/header.php';
 
-if (isset($success_messages)) {
-    foreach ($success_messages as $success){
-        echo '<p class="message alert-success"><span style="display: flex; align-items: center;"><i style="color: green; font-size: 1.5rem; padding-right: 1rem;" class="fa-regular fa-circle-check"></i>'.$success.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
-    }
-    unset($success_messages);
-}
-if (isset($error_messages)) {
-    foreach ($error_messages as $error){
-        echo '<p class="message alert-danger"><span style="display: flex; align-items: center;"><i style="color: red; font-size: 1.5rem; padding-right: 1rem;" class="fa-solid fa-xmark"></i>'.$error.'</span><i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i></p>';
-    }
-    unset($error_messages);
-}
+displayMessages()
 ?>
 
     <div class="d-flex justify-content-between align-items-center w-100 mb-4 underline">

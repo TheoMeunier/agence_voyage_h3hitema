@@ -5,10 +5,10 @@ function isSubmit()
     return isset($_POST['submit']);
 }
 
-function findAll(string $table)
+function findAll(string $table, string $orderBy = 'id')
 {
     include '../../db.php';
-    $query = "SELECT * FROM $table ORDER BY id ASC";
+    $query = "SELECT * FROM $table ORDER BY $orderBy ASC";
 
     if (isset($_POST['search-submit'])){
 
@@ -81,6 +81,11 @@ function delete(string $table, int $id)
         alert('error', "L'élément n'a pas pu être supprimé");
     }
     header('location:index.php');
+}
+
+function getValues():array
+{
+    return $_POST;
 }
 
 function Exist(string $table, string $where, string $value)
